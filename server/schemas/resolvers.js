@@ -23,6 +23,17 @@ const resolvers = {
       return { token, user };
     },
 
+    addScore: async (parent, { score, game }, context) => {
+      console.log(context);
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, {
+          $push: { scores: { score, game } },
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
     updateUser: async (parent, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
