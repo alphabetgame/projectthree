@@ -6,6 +6,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    scores: [Outcome]
   }
   type Game {
     _id: ID
@@ -16,6 +17,10 @@ const typeDefs = gql`
   type Auth {
     token: ID
     user: User
+  }
+  enum Outcome {
+    score: Int
+    game: String
   }
 
   type Query {
