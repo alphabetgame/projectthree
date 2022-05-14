@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../components/AlphabetCard.css";
 
 //
 function Game() {
@@ -56,12 +57,7 @@ function Game() {
         <div
           onClick={() => handleCardClick(letter)}
           key={letter}
-          style={{
-            width: "100px",
-            height: "100px",
-            textAlign: "center",
-            background: "red",
-          }}
+          className="card"
         >
           {letter}
         </div>
