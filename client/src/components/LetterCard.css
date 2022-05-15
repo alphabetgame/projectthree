@@ -1,9 +1,16 @@
 .card {
-  width: 50px;
-  height: 80px;
-  box-shadow: 0 2px 4px;
-  border-radius: 5px;
+  background-color: #48bccd;
+  color: #c14868;
+  font-family: "Nunito", sans-serif;
+  width: 6rem;
+  height: 8rem;
+  box-shadow: 0 2px 4px #717574;
+  border-radius: 10% 5px;
   display: flex;
+  font-size: 3em;
+  font-weight: bolder;
+  margin: 0.3rem;
+  line-height: 3rem;
   align-items: center;
   justify-content: center;
   cursor: pointer;

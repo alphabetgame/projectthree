@@ -15,6 +15,8 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Game from "./pages/Game";
+import "./index.css";
+import "./App.css";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
