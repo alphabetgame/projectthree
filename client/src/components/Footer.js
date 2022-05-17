@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div>
-      <h1>Copyright 2022</h1>
+      <footer>Copyright © 2022</footer>
     </div>
   );
 }

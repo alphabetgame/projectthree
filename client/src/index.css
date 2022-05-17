@@ -9,3 +9,20 @@ body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
+
+footer {
+  background-color: #c14868;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+h1 {
+  background-color: #ffdf4f;
+  color: white;
+  size: 24px;
+}
+
+img {
+  size: 60px;
+}
