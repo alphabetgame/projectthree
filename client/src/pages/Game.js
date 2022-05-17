@@ -4,9 +4,10 @@
 // DISPLAY Stats to track after each completed game. (Ideas: time, accuracy)
 // WHEN user finishes the game, user is prompted to either play again or return to profile page. (LATER: can move to the next letter)
 
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
+import Timer from "../components/Timer";
 
 function Game() {
   // code used from arrayOfAlphabet.js from github
@@ -14,11 +15,58 @@ function Game() {
   const alphabet = alpha.map((x) => String.fromCharCode(x));
   console.log(alphabet);
 
+  const letters = [
+    { id: 1, value: "A" },
+    { id: 2, value: "B" },
+    { id: 3, value: "C" },
+    { id: 4, value: "D" },
+    { id: 5, value: "E" },
+    { id: 6, value: "F" },
+    { id: 7, value: "G" },
+    { id: 8, value: "H" },
+    { id: 9, value: "I" },
+    { id: 10, value: "J" },
+    { id: 11, value: "K" },
+    { id: 12, value: "L" },
+    { id: 13, value: "M" },
+    { id: 14, value: "N" },
+    { id: 15, value: "O" },
+    { id: 16, value: "P" },
+    { id: 17, value: "Q" },
+    { id: 18, value: "R" },
+    { id: 19, value: "S" },
+    { id: 20, value: "T" },
+    { id: 21, value: "U" },
+    { id: 22, value: "V" },
+    { id: 23, value: "W" },
+    { id: 24, value: "X" },
+    { id: 25, value: "Y" },
+    { id: 26, value: "Z" },
+  ];
+
   const [shuffleLetters, setShuffleLetters] = useState(alphabet);
+
+  const [correctLetter, setCorrectLetter] = useState(letters[0].value);
+  const [alphabetPosition, setAlphabetPosition] = useState(0);
+  // code used from arrayOfAlphabet.js from github
+
+  console.log(letters);
 
   const handleCardClick = (letter) => {
     //  when a card is clicked, this is what goes here
+    if (letter === correctLetter) {
+      const newPosition = alphabetPosition + 1;
+      setAlphabetPosition(newPosition);
+      setCorrectLetter(letters[newPosition].value);
+    }
+    if (alphabetPosition === 26) {
+      console.log("game over");
+    }
+    //set to default state once game over
+
     console.log(letter);
+
+    //if statement that checks whether the user chose correctly or not
   };
 
   //   shuffle letters
@@ -36,27 +84,12 @@ function Game() {
     // setting state
     setShuffleLetters(shuffled(alphabet));
   };
-
+  const handleIsActive = () => {};
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
-
-  //
-  // const SearchBooks = () => {
-  //   // use to store scores
-  //   const [searchedBooks, setSearchedBooks] = useState([]);
-
-  //   // save scoreId
-  //   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-
-  //   const [saveBook, { error }] = useMutation(SAVE_BOOK);
-
-  //   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  //   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  //   useEffect(() => {
-  //     return () => saveBookIds(savedBookIds);
-  //   });
 
   return (
     <div>
+      {/* <Timer val={10} handleIsActive={handleIsActive} /> */}
       {shuffleLetters}
       {shuffleLetters.map((letter) => (
         <div
