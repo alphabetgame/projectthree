@@ -45,11 +45,8 @@ function Gameone() {
   ];
 
   const [shuffleLetters, setShuffleLetters] = useState(alphabet);
-
   const [correctLetter, setCorrectLetter] = useState(letters[0].value);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-
-  // code used from arrayOfAlphabet.js from github
 
   console.log(letters);
 
@@ -88,10 +85,12 @@ function Gameone() {
   const handleIsActive = () => {};
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
 
+  class CardDisappear {}
+
   return (
-    <div>
+    <div className="container">
       {/* <Timer val={10} handleIsActive={handleIsActive} /> */}
-      {shuffleLetters}
+      {/* {shuffleLetters} */}
       {shuffleLetters.map((letter) => (
         <div
           onClick={() => handleCardClick(letter)}
@@ -101,7 +100,7 @@ function Gameone() {
           {letter}
         </div>
       ))}
-      <button onClick={playGameButton}>Play!</button>;
+      <button onClick={playGameButton}>Play!</button>
     </div>
   );
 }
