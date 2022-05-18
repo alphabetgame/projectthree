@@ -15,6 +15,8 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Game from "./pages/Game";
+import Gameone from "./pages/Gameone";
+import Gametwo from "./pages/Gametwo";
 import "./index.css";
 import "./App.css";
 
@@ -49,6 +51,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/gameone" element={<Gameone />} />
+            <Route path="/gametwo" element={<Gametwo />} />
           </Routes>
 
           <Home></Home>

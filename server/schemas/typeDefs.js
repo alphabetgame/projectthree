@@ -1,6 +1,11 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type Outcome {
+    score: Int
+    game: String
+  }
+
   type User {
     _id: ID
     firstName: String
@@ -17,10 +22,6 @@ const typeDefs = gql`
   type Auth {
     token: ID
     user: User
-  }
-  enum Outcome {
-    score: Int
-    game: String
   }
 
   type Query {
