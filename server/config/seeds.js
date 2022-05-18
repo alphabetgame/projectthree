@@ -7,8 +7,8 @@ db.once("open", async () => {
   const game = await Game.insertMany([
     { name: "Alphabet Game", solution: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", level: 1 },
     {
-      name: "Sentence Game",
-      solution: "THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG",
+      name: "Bird",
+      solution: "BIRD",
       level: 2,
     },
   ]);
