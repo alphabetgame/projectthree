@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Game } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -12,6 +12,11 @@ const resolvers = {
       }
 
       throw new AuthenticationError("Not logged in");
+    },
+    games: async (parent, args) => {
+      const games = await Game.find();
+
+      return games;
     },
   },
 
