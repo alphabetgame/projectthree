@@ -1,3 +1,12 @@
+:root {
+  --green: #a5a655;
+  --yellow: #e0b342;
+  --pink: #c14868;
+  --turquoise: #48bccd;
+  --grey: #717574;
+  --font: "Nunito", sans-serif;
+}
+
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;

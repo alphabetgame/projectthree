@@ -1,0 +1,99 @@
+/* used code from user Yuhomyan on codepen.io */
+
+button {
+  font-family: var(--font-family);
+  font-size: 24px;
+  font-style: bold;
+  color: white;
+  padding: 14px 65px;
+  border-radius: 5px;
+  margin: 14px 0px;
+  cursor: pointer;
+  line-height: 42px;
+  background-color: var(--green);
+  background: radial-gradient(
+    circle,
+    rgb(247, 150, 192, 1) 0%,
+    var(--pink) 95%
+  );
+  border: none;
+}
+
+button span {
+  position: relative;
+  display: block;
+  width: 50%;
+  height: 75%;
+}
+
+button:before,
+button:after {
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 1px;
+  box-shadow: -1px -1px 20px 1px rgba(255, 255, 255, 1),
+    -3px -3px 4px 0px rgba(255, 255, 255, 1), 6px 6px px 0px rgba(0, 0, 0, 0.4),
+    3px 3px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+button:before {
+  right: 0;
+  top: 0;
+  transition: all 450ms ease;
+}
+
+button:after {
+  left: 0;
+  bottom: 0;
+  transition: all 450ms ease;
+}
+
+button:hover {
+  background-color: transparent;
+  color: var(--turquoise);
+  box-shadow: none;
+}
+
+button:hover:before {
+  transition: all 485ms ease;
+  height: 100%;
+}
+
+button:hover:after {
+  transition: all 485ms ease;
+  height: 100%;
+}
+
+button span:before,
+button span:after {
+  position: absolute;
+  content: "";
+  box-shadow: -1px -1px 21px 1px rgba(255, 255, 255, 1),
+    -3px -3px 4px 0px rgba(255, 255, 255, 1),
+    6px 6px 19px 0px rgba(0, 0, 0, 0.4), 3px 3px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+button span:before {
+  left: 0;
+  top: 0;
+  height: 0.6px;
+  width: 0%;
+  transition: all 450ms ease;
+}
+
+button span:after {
+  right: 0;
+  bottom: 0;
+  height: 0.6px;
+  width: 0%;
+  transition: all 450ms ease;
+}
+
+button span:hover:before {
+  width: 100%;
+}
+
+button span:hover:after {
+  width: 100%;
+}
