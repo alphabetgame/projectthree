@@ -73,7 +73,7 @@ function Gametwo() {
           {letter}
         </div>
       ))}
-      <button onClick={playGameButton}>Play!</button>;
+      <button onClick={playGameButton}>Play!</button>
     </div>
   );
 }
