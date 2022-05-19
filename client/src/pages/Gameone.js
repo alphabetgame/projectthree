@@ -47,6 +47,7 @@ function Gameone() {
   const [shuffleLetters, setShuffleLetters] = useState(alphabet);
   const [correctLetter, setCorrectLetter] = useState(letters[0].value);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
+  const [visable, setVisable] = useState(false);
 
   console.log(letters);
 
@@ -57,6 +58,13 @@ function Gameone() {
       setAlphabetPosition(newPosition);
       setCorrectLetter(letters[newPosition].value);
     }
+    if (visable && correctLetter) {
+      {
+      }
+    } else if (clicked && !correctLetter) {
+      alert("Try Again!");
+    }
+
     if (alphabetPosition === 26) {
       console.log("game over");
     }
@@ -85,22 +93,26 @@ function Gameone() {
   const handleIsActive = () => {};
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
 
-  class CardDisappear {}
-
   return (
-    <div className="container">
+    <div>
       {/* <Timer val={10} handleIsActive={handleIsActive} /> */}
       {/* {shuffleLetters} */}
-      {shuffleLetters.map((letter) => (
-        <div
-          onClick={() => handleCardClick(letter)}
-          key={letter}
-          className="card"
-        >
-          {letter}
-        </div>
-      ))}
-      <button onClick={playGameButton}>Play!</button>
+      <div className="container">
+        {shuffleLetters.map((letter) => (
+          <div
+            onClick={() => handleCardClick(letter)}
+            key={letter}
+            className="card"
+          >
+            {visable ? !visable : null}
+
+            {letter}
+          </div>
+        ))}
+      </div>
+      <button onClick={playGameButton}>
+        <span>Play!</span>
+      </button>
     </div>
   );
 }
