@@ -12,6 +12,8 @@ body {
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffdf4f;
+  text-shadow: #717574;
 }
 
 /* code {
@@ -24,6 +26,7 @@ footer {
   color: white;
   font-weight: bold;
   text-align: center;
+  height: 3rem;
 }
 
 h1 {
@@ -34,4 +37,16 @@ h1 {
 
 img {
   size: 60px;
+}
+
+input {
+  width: 200px;
+  height: 1.75rem;
+  padding: 1;
+  margin: 1;
+  box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  align-items: stretch;
 }

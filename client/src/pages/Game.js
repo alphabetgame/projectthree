@@ -10,7 +10,8 @@ import "../components/Game.css";
 import { Link } from "react-router-dom";
 import Timer from "../components/Timer";
 
-function Game() {
+function Game(props) {
+  const { handleLevelIncrease } = props;
   // code used from arrayOfAlphabet.js from github
   // buttons to link to game options
   return (

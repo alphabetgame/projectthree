@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -40,6 +40,10 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [level, setLevel] = useState(1);
+  const handleLevelIncrease = (difficulty) => {
+    setLevel(difficulty);
+  };
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -50,9 +54,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/game" element={<Game />} />
+            <Route
+              path="/game"
+              element={<Game handleLevelIncrease={handleLevelIncrease} />}
+            />
             <Route path="/gameone" element={<Gameone />} />
-            <Route path="/gametwo" element={<Gametwo />} />
+            <Route path="/gametwo" element={<Gametwo level={level} />} />
           </Routes>
 
           <Home></Home>

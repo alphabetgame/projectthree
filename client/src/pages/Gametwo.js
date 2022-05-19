@@ -11,11 +11,12 @@ import Timer from "../components/Timer";
 import { QUERY_GAMES } from "../utils/query";
 import { useQuery } from "@apollo/client";
 
-function Gametwo() {
+function Gametwo(props) {
+  const { level } = props;
   // code used from arrayOfAlphabet.js from github
 
   const { loading, data } = useQuery(QUERY_GAMES);
-  const letters = data?.games[0].solution.split("") || [];
+  const letters = data?.games[level].solution.split("") || [];
 
   const [shuffleLetters, setShuffleLetters] = useState([]);
 

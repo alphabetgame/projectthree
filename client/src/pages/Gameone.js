@@ -8,6 +8,7 @@ import React, { Component, useState } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
 import Timer from "../components/Timer";
+import Letter from "../components/Letter";
 
 function Gameone() {
   // code used from arrayOfAlphabet.js from github
@@ -47,17 +48,19 @@ function Gameone() {
   const [shuffleLetters, setShuffleLetters] = useState(alphabet);
   const [correctLetter, setCorrectLetter] = useState(letters[0].value);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-  const [hidden, isSetHidden] = useState(true);
+  const [hidden, isSetHidden] = useState(false);
 
   console.log(letters);
 
-  const handleCardClick = (letter) => {
+  const handleCardClick = (e, letter) => {
+    console.log(e.target);
+
     //  when a card is clicked, this is what goes here
     if (letter === correctLetter) {
       const newPosition = alphabetPosition + 1;
       setAlphabetPosition(newPosition);
       setCorrectLetter(letters[newPosition].value);
-      isSetHidden(hidden);
+      e.target.classList.add("hidden");
     }
 
     // TODO: not working, alert temporary
@@ -99,15 +102,7 @@ function Gameone() {
       {/* {shuffleLetters} */}
       <div className="container">
         {shuffleLetters.map((letter) => (
-          <div
-            onClick={() => {
-              handleCardClick(letter);
-            }}
-            key={letter}
-            className="card"
-          >
-            {letter}
-          </div>
+          <Letter letter={letter} handleCardClick={handleCardClick} />
         ))}
       </div>
       <button onClick={playGameButton}>
