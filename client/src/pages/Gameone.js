@@ -47,7 +47,7 @@ function Gameone() {
   const [shuffleLetters, setShuffleLetters] = useState(alphabet);
   const [correctLetter, setCorrectLetter] = useState(letters[0].value);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-  const [visable, setVisable] = useState(false);
+  const [hidden, isSetHidden] = useState(true);
 
   console.log(letters);
 
@@ -57,11 +57,11 @@ function Gameone() {
       const newPosition = alphabetPosition + 1;
       setAlphabetPosition(newPosition);
       setCorrectLetter(letters[newPosition].value);
+      isSetHidden(hidden);
     }
-    if (visable && correctLetter) {
-      {
-      }
-    } else if (clicked && !correctLetter) {
+
+    // TODO: not working, alert temporary
+    if (!correctLetter) {
       alert("Try Again!");
     }
 
@@ -100,12 +100,12 @@ function Gameone() {
       <div className="container">
         {shuffleLetters.map((letter) => (
           <div
-            onClick={() => handleCardClick(letter)}
+            onClick={() => {
+              handleCardClick(letter);
+            }}
             key={letter}
             className="card"
           >
-            {visable ? !visable : null}
-
             {letter}
           </div>
         ))}
