@@ -7,34 +7,33 @@
 import React, { useState, useEffect } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
+import Letter from "../components/Letter";
+
 //import Timer from "../components/Timer";
 import { QUERY_GAMES } from "../utils/query";
 import { useQuery } from "@apollo/client";
 
 function Gametwo(props) {
   const { level } = props;
-  // code used from arrayOfAlphabet.js from github
 
   const { loading, data } = useQuery(QUERY_GAMES);
   const letters = data?.games[level].solution.split("") || [];
 
   const [shuffleLetters, setShuffleLetters] = useState([]);
-
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-  // const [timerActive, setTimerActive] = useState(false);
+
   const [seconds, setSeconds] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
-  // const [timeRemaining, setTimeRemaining] = useState(10);
-  // code used from arrayOfAlphabet.js from github
 
   console.log(letters);
 
-  const handleCardClick = (letter) => {
+  const handleCardClick = (e, letter) => {
     //  when a card is clicked, this is what goes here
 
     if (letter === letters[alphabetPosition]) {
       const newPosition = alphabetPosition + 1;
       setAlphabetPosition(newPosition);
+      e.target.classList.add("hidden");
     }
     if (alphabetPosition === letters.length - 1) {
       console.log("game over");
@@ -81,22 +80,18 @@ function Gametwo(props) {
     // setting state
     setShuffleLetters(shuffled(letters));
   };
-  const handleIsActive = () => {};
+
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
 
   return (
     <div>
       <div>You have {seconds} seconds remaining</div>
-      {shuffleLetters}
-      {shuffleLetters.map((letter) => (
-        <div
-          onClick={() => handleCardClick(letter)}
-          key={letter}
-          className="card"
-        >
-          {letter}
-        </div>
-      ))}
+      <div className="container">
+        {/* {shuffleLetters} */}
+        {shuffleLetters.map((letter) => (
+          <Letter letter={letter} handleCardClick={handleCardClick} />
+        ))}
+      </div>
       <button onClick={playGameButton}>Play!</button>
     </div>
   );
