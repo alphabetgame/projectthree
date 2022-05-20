@@ -1,0 +1,11 @@
+.mx-1 {
+  list-style: none;
+  flex-direction: row;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+}
