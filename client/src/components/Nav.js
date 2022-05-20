@@ -25,7 +25,7 @@ function Nav() {
       );
     } else {
       return (
-        <nav>
+        <div className="container">
           <ul className="flex-row">
             <li className="mx-1">
               <Link to="/">Home/Logo</Link>
@@ -40,7 +40,7 @@ function Nav() {
               <Link to="/game">Game</Link>
             </li>
           </ul>
-        </nav>
+        </div>
       );
     }
   }
