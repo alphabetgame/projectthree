@@ -6,7 +6,7 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
+        <ul className="breadCrumb">
           <li className="mx-1"></li>
           <li className="mx-1">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
@@ -18,7 +18,7 @@ function Nav() {
       );
     } else {
       return (
-        <ul className="flex-row">
+        <ul className="breadCrumb">
           <li className="mx-1">
             <Link to="/">Home/Logo</Link>
           </li>

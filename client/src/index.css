@@ -39,14 +39,44 @@ img {
   size: 60px;
 }
 
-input {
+ input {
   width: 200px;
   height: 1.75rem;
-  padding: 1;
-  margin: 1;
   box-sizing: border-box;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 5px;
   align-items: stretch;
+} 
+
+.signupContainer {
+  flex-wrap: wrap;
+  background-color: rgba(255, 255, 0, 0.363);
+  max-width: auto 100px;
+  margin: auto;
+  text-align: center;
+  padding-top: 5em;
+
+}
+
+.breadCrumb {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.breadCrumb li {
+  padding: 5px;
+}
+
+.signUp {
+  display:grid;
+  grid-template-columns: max-content max-content;
+  grid-gap:5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp label { 
+  text-align:right; 
 }

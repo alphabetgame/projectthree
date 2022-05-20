@@ -40,13 +40,14 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
+    <div className="signupContainer my-1">
       <Link to="/signup">← Go to Signup</Link>
       <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email address:</label>
           <input
+            style={{marginLeft: "40px"}}
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -57,6 +58,7 @@ function Login(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
+            style={{marginLeft: "13px"}}
             placeholder="******"
             name="password"
             type="password"
