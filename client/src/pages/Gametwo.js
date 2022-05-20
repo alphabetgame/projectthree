@@ -11,7 +11,8 @@ import Letter from "../components/Letter";
 
 //import Timer from "../components/Timer";
 import { QUERY_GAMES } from "../utils/query";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import { ADD_SCORE } from "../utils/mutations";
 
 function Gametwo(props) {
   const { level } = props;
@@ -22,30 +23,45 @@ function Gametwo(props) {
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
 
+  const delay = (time) => new Promise((res) => setTimeout(res, time));
   const [seconds, setSeconds] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
-
+  const [gameOver, setGameOver] = useState(false);
+  // add score
+  const [addScore, { error }] = useMutation(ADD_SCORE);
   console.log(letters);
-
+  // handleclick function for when guesses are made
   const handleCardClick = (e, letter) => {
     //  when a card is clicked, this is what goes here
-
-    if (letter === letters[alphabetPosition]) {
-      const newPosition = alphabetPosition + 1;
-      setAlphabetPosition(newPosition);
-      e.target.classList.add("hidden");
-    }
-    if (alphabetPosition === letters.length - 1) {
-      console.log("game over");
+    if (gameOver != true) {
+      if (letter === letters[alphabetPosition]) {
+        const newPosition = alphabetPosition + 1;
+        setAlphabetPosition(newPosition);
+        e.target.classList.add("hidden");
+      }
+      if (alphabetPosition === letters.length - 1) {
+        console.log("game over - you win");
+        setTimerActive(false);
+        try {
+          const { data } = addScore({
+            variables: {
+              game: level.toString(),
+              score: seconds,
+            },
+          });
+        } catch (err) {
+          console.error(err);
+        }
+      }
     }
     //set to default state once game over
 
-    console.log(letter);
+    // console.log(letter);
 
     //if statement that checks whether the user chose correctly or not
   };
 
-  //   shuffle letters
+  //   shuffle letters function
   const shuffled = (letters) =>
     letters
       .map((value) => ({
@@ -55,6 +71,7 @@ function Gametwo(props) {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
+  // timer function
   useEffect(() => {
     if (timerActive === true) {
       const interval = setInterval(() => {
@@ -65,19 +82,31 @@ function Gametwo(props) {
       if (seconds <= 0) {
         console.log("out of time");
         setTimerActive(false);
+        setGameOver(true);
         clearInterval(interval);
       }
       return () => clearInterval(interval);
     }
   });
 
+  // showprompt function
+  const showPrompt = async () => {
+    document.getElementById("prompt").classList.remove("hidden");
+    await delay(5000);
+    console.log("waited 5 seconds");
+    // hide word prompt
+    document.getElementById("prompt").classList.add("hidden");
+  };
+
+  // start game function
   const playGameButton = async (event) => {
     event.preventDefault();
-    //activate timer
-    //setTimerActive(true);
-    // call timer function
+    // hide instructions
+    document.getElementById("instructions").classList.add("hidden");
+    // show word prompt then remove
+    await showPrompt();
+    // activate game after show prompt, timer and shuffled letters
     setTimerActive(true);
-    // setting state
     setShuffleLetters(shuffled(letters));
   };
 
@@ -85,9 +114,16 @@ function Gametwo(props) {
 
   return (
     <div>
+      <div id="instructions" className="">
+        When you hit the Play Game button a word will be displayed for 5
+        seconds. Its letters will then get scrambled, and you'll have 10 seconds
+        to spell it correctly!
+      </div>
+      <div id="prompt" className="hidden">
+        {letters}
+      </div>
       <div>You have {seconds} seconds remaining</div>
       <div className="container">
-        {/* {shuffleLetters} */}
         {shuffleLetters.map((letter) => (
           <Letter letter={letter} handleCardClick={handleCardClick} />
         ))}
