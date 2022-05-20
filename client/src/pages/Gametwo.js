@@ -4,10 +4,10 @@
 // DISPLAY Stats to track after each completed game. (Ideas: time, accuracy)
 // WHEN user finishes the game, user is prompted to either play again or return to profile page. (LATER: can move to the next letter)
 
-import React, { Component, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
-import Timer from "../components/Timer";
+//import Timer from "../components/Timer";
 import { QUERY_GAMES } from "../utils/query";
 import { useQuery } from "@apollo/client";
 
@@ -20,7 +20,10 @@ function Gametwo() {
   const [shuffleLetters, setShuffleLetters] = useState([]);
 
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-
+  // const [timerActive, setTimerActive] = useState(false);
+  const [seconds, setSeconds] = useState(10);
+  const [timerActive, setTimerActive] = useState(false);
+  // const [timeRemaining, setTimeRemaining] = useState(10);
   // code used from arrayOfAlphabet.js from github
 
   console.log(letters);
@@ -52,8 +55,28 @@ function Gametwo() {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
+  useEffect(() => {
+    if (timerActive === true) {
+      const interval = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds((seconds) => seconds - 1);
+        }
+      }, 1000);
+      if (seconds <= 0) {
+        console.log("out of time");
+        setTimerActive(false);
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    }
+  });
+
   const playGameButton = async (event) => {
     event.preventDefault();
+    //activate timer
+    //setTimerActive(true);
+    // call timer function
+    setTimerActive(true);
     // setting state
     setShuffleLetters(shuffled(letters));
   };
@@ -62,7 +85,7 @@ function Gametwo() {
 
   return (
     <div>
-      {/* <Timer val={10} handleIsActive={handleIsActive} /> */}
+      <div>You have {seconds} seconds remaining</div>
       {shuffleLetters}
       {shuffleLetters.map((letter) => (
         <div

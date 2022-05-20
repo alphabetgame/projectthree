@@ -14,6 +14,7 @@ function Gameone() {
   const alpha = Array.from(Array(26)).map((e, i) => i + 65);
   const alphabet = alpha.map((x) => String.fromCharCode(x));
   console.log(alphabet);
+  const [timerActive, setTimerActive] = useState(false);
 
   const letters = [
     { id: 1, value: "A" },
@@ -87,6 +88,8 @@ function Gameone() {
 
   const playGameButton = async (event) => {
     event.preventDefault();
+    // activate timer
+    setTimerActive(true);
     // setting state
     setShuffleLetters(shuffled(alphabet));
   };
@@ -95,7 +98,7 @@ function Gameone() {
 
   return (
     <div>
-      {/* <Timer val={10} handleIsActive={handleIsActive} /> */}
+      <Timer val={10} timerActive={timerActive} />
       {/* {shuffleLetters} */}
       <div className="container">
         {shuffleLetters.map((letter) => (
