@@ -1,4 +1,5 @@
 import React from "react";
+import "./Header.css";
 import eggLogo from "../assets/images/egglogo.jpg";
 
 function Header() {
