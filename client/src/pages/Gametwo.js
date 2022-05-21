@@ -20,11 +20,10 @@ function Gametwo(props) {
   console.log(data);
   const words = data?.games[level].solution.split(",") || [];
 
-  const [letters, setLetters ]= useState([]);
+  const [letters, setLetters] = useState([]);
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
 
-  
   // new timer stuff
   const [start, setStart] = useState();
   const [now, setNow] = useState(start);
@@ -34,22 +33,19 @@ function Gametwo(props) {
   const [timerHidden, setTimerHidden] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [addScore, { error }] = useMutation(ADD_SCORE);
+  // const [pickedWord, setPickedWord] = useState([]);
 
   const delay = (time) => new Promise((res) => setTimeout(res, time));
 
- const handleWord = (word) => {
-  //  choose item form array of words
-    const letters = word[Math.floor(Math.random() * word.length)].split("")
-    
-    return letters;
-  
- }
+  const handleWord = (word) => {
+    //  choose item form array of words
+    const letters = word[Math.floor(Math.random() * word.length)].split("");
 
- 
-  
-  
+    return letters;
+  };
+
   // add score
-  
+
   // handleclick function for when guesses are made
   const handleCardClick = (e, letter) => {
     //  when a card is clicked, this is what goes here
@@ -93,7 +89,6 @@ function Gametwo(props) {
     useEffect(() => {
       if (timerActive === true) {
         const interval = setInterval(() => setNow(Date.now(), 1000));
-        console.log(now);
         if (secondsLeft <= 0) {
           console.log("out of time");
           setTimerActive(false);
@@ -141,11 +136,12 @@ function Gametwo(props) {
         seconds. Its letters will then get scrambled, and you'll have 10 seconds
         to spell it correctly!
       </div>
-      <div id="prompt" className="hidden">
-        {letters}
+      <div id="prompt" className="hidden container">
+        {letters.map((letter) => (
+          <Letter letter={letter} />
+        ))}
       </div>
       {timerHidden ? null : <Timer />}
-      {/* <Timer /> */}
       <div className="container">
         {shuffleLetters.map((letter) => (
           <Letter letter={letter} handleCardClick={handleCardClick} />
