@@ -18,7 +18,6 @@ import { useParams } from "react-router-dom";
 function Gametwo() {
   const { level } = useParams();
   const { loading, data } = useQuery(QUERY_GAMES);
-  console.log(data);
   const words = data?.games[level].solution.split(",") || [];
 
   const [letters, setLetters] = useState([]);
@@ -31,7 +30,8 @@ function Gametwo() {
   const seconds = Math.floor((now - start) / 1000);
   const secondsLeft = 10 - seconds;
   const [timerActive, setTimerActive] = useState(false);
-  const [timerHidden, setTimerHidden] = useState(true);
+  const [promptHidden, setPromptHidden] = useState(true);
+  const [gameHidden, setGameHidden] = useState(true);
   const [gameOver, setGameOver] = useState(false);
   const [addScore, { error }] = useMutation(ADD_SCORE);
   // const [pickedWord, setPickedWord] = useState([]);
@@ -105,28 +105,27 @@ function Gametwo() {
   }
   // showprompt function
   const showPrompt = async () => {
-    document.getElementById("prompt").classList.remove("hidden");
+    setPromptHidden(false);
     await delay(5000);
-    // console.log("waited 5 seconds");
     // hide word prompt
-    document.getElementById("prompt").classList.add("hidden");
+    setPromptHidden(true);
   };
 
   // start game function
   const playGameButton = async (event) => {
     event.preventDefault();
     const pickedWord = handleWord(words);
-    console.log("words", words);
     setLetters(pickedWord);
     // hide instructions
     document.getElementById("instructions").classList.add("hidden");
+    document.getElementById("play").classList.add("hidden");
     // show word prompt then remove
     await showPrompt();
     // activate game after show prompt, timer and shuffled letters
     setStart(Date.now());
     setTimerActive(true);
     setShuffleLetters(shuffled(pickedWord));
-    setTimerHidden(false);
+    setGameHidden(false);
   };
 
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
@@ -138,18 +137,26 @@ function Gametwo() {
         seconds. Its letters will then get scrambled, and you'll have 10 seconds
         to spell it correctly!
       </div>
-      <div id="prompt" className="hidden container">
-        {letters.map((letter) => (
-          <Letter letter={letter} />
-        ))}
-      </div>
-      {timerHidden ? null : <Timer />}
-      <div className="container">
-        {shuffleLetters.map((letter) => (
-          <Letter letter={letter} handleCardClick={handleCardClick} />
-        ))}
-      </div>
-      <button onClick={playGameButton}>Play!</button>
+      {promptHidden ? null : (
+        <div id="prompt" className="container">
+          {letters.map((letter) => (
+            <Letter letter={letter} />
+          ))}
+        </div>
+      )}
+      {gameHidden ? null : (
+        <>
+          <Timer />
+          <div className="container">
+            {shuffleLetters.map((letter) => (
+              <Letter letter={letter} handleCardClick={handleCardClick} />
+            ))}
+          </div>
+        </>
+      )}
+      <button id="play" className="" onClick={playGameButton}>
+        Play!
+      </button>
     </div>
   );
 }
