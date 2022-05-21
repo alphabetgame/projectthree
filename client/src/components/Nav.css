@@ -1,11 +1,8 @@
-/* .mx-1 {
-  list-style: none;
-  flex-direction: row;
+.navbar {
+  background-color: var(--pink);
 }
 
-Container {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
+/* Container {
+  padding: 0 15px;
+  flex-direction: row;
 } */
