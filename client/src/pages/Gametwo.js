@@ -4,7 +4,7 @@
 // DISPLAY Stats to track after each completed game. (Ideas: time, accuracy)
 // WHEN user finishes the game, user is prompted to either play again or return to profile page. (LATER: can move to the next letter)
 
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
 import Letter from "../components/Letter";
@@ -16,20 +16,40 @@ import { ADD_SCORE } from "../utils/mutations";
 
 function Gametwo(props) {
   const { level } = props;
-
   const { loading, data } = useQuery(QUERY_GAMES);
-  const letters = data?.games[level].solution.split("") || [];
+  console.log(data);
+  const words = data?.games[level].solution.split(",") || [];
 
+  const [letters, setLetters ]= useState([]);
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
 
-  const delay = (time) => new Promise((res) => setTimeout(res, time));
-  const [seconds, setSeconds] = useState(10);
+  
+  // new timer stuff
+  const [start, setStart] = useState();
+  const [now, setNow] = useState(start);
+  const seconds = Math.floor((now - start) / 1000);
+  const secondsLeft = 10 - seconds;
   const [timerActive, setTimerActive] = useState(false);
+  const [timerHidden, setTimerHidden] = useState(true);
   const [gameOver, setGameOver] = useState(false);
-  // add score
   const [addScore, { error }] = useMutation(ADD_SCORE);
-  console.log(letters);
+
+  const delay = (time) => new Promise((res) => setTimeout(res, time));
+
+ const handleWord = (word) => {
+  //  choose item form array of words
+    const letters = word[Math.floor(Math.random() * word.length)].split("")
+    
+    return letters;
+  
+ }
+
+ 
+  
+  
+  // add score
+  
   // handleclick function for when guesses are made
   const handleCardClick = (e, letter) => {
     //  when a card is clicked, this is what goes here
@@ -46,7 +66,7 @@ function Gametwo(props) {
           const { data } = addScore({
             variables: {
               game: level.toString(),
-              score: seconds,
+              score: secondsLeft,
             },
           });
         } catch (err) {
@@ -55,9 +75,6 @@ function Gametwo(props) {
       }
     }
     //set to default state once game over
-
-    // console.log(letter);
-
     //if statement that checks whether the user chose correctly or not
   };
 
@@ -71,29 +88,29 @@ function Gametwo(props) {
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
-  // timer function
-  useEffect(() => {
-    if (timerActive === true) {
-      const interval = setInterval(() => {
-        if (seconds > 0) {
-          setSeconds((seconds) => seconds - 1);
+  // new timer function based on real time
+  function Timer() {
+    useEffect(() => {
+      if (timerActive === true) {
+        const interval = setInterval(() => setNow(Date.now(), 1000));
+        console.log(now);
+        if (secondsLeft <= 0) {
+          console.log("out of time");
+          setTimerActive(false);
+          setGameOver(true);
+          clearInterval(interval);
         }
-      }, 1000);
-      if (seconds <= 0) {
-        console.log("out of time");
-        setTimerActive(false);
-        setGameOver(true);
-        clearInterval(interval);
+        return () => clearInterval(interval);
       }
-      return () => clearInterval(interval);
-    }
-  });
+    });
 
+    return <div className="">Seconds remaining: {secondsLeft}</div>;
+  }
   // showprompt function
   const showPrompt = async () => {
     document.getElementById("prompt").classList.remove("hidden");
     await delay(5000);
-    console.log("waited 5 seconds");
+    // console.log("waited 5 seconds");
     // hide word prompt
     document.getElementById("prompt").classList.add("hidden");
   };
@@ -101,13 +118,18 @@ function Gametwo(props) {
   // start game function
   const playGameButton = async (event) => {
     event.preventDefault();
+    const pickedWord = handleWord(words);
+    console.log("words", words);
+    setLetters(pickedWord);
     // hide instructions
     document.getElementById("instructions").classList.add("hidden");
     // show word prompt then remove
     await showPrompt();
     // activate game after show prompt, timer and shuffled letters
+    setStart(Date.now());
     setTimerActive(true);
-    setShuffleLetters(shuffled(letters));
+    setShuffleLetters(shuffled(pickedWord));
+    setTimerHidden(false);
   };
 
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
@@ -122,7 +144,8 @@ function Gametwo(props) {
       <div id="prompt" className="hidden">
         {letters}
       </div>
-      <div>You have {seconds} seconds remaining</div>
+      {timerHidden ? null : <Timer />}
+      {/* <Timer /> */}
       <div className="container">
         {shuffleLetters.map((letter) => (
           <Letter letter={letter} handleCardClick={handleCardClick} />

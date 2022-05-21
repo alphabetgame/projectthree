@@ -4,14 +4,18 @@ import eggLogo from "../assets/images/egglogo.jpg";
 
 function Header() {
   return (
-    <header className="">
-      <h1 className="logo">
-        <img src={eggLogo} alt="Yellow cartoon egg logo."></img>
-        LETTER SCRAMBLE
-        <img src={eggLogo} alt="Yellow cartoon egg logo."></img>
-      </h1>
-      <p className="tag-line">Unscramble the letters to win!</p>
-    </header>
+    <div className="container">
+      <img src={eggLogo} alt="Yellow cartoon egg logo." className="col-3"></img>
+      <div>
+        <h1 className=" col-6 logo">LETTER SCRAMBLE </h1>
+        <p className="tag-line">Unscramble the letters to win!</p>
+      </div>
+      <img
+        src={eggLogo}
+        alt="Yellow cartoon egg logo."
+        className="col-3 extra-icon"
+      ></img>
+    </div>
   );
 }
 
