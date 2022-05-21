@@ -18,7 +18,7 @@ function Login(props) {
     try {
       const mutationResponse = await login({
         variables: {
-          firstname: formstate.firstname,
+          firstname: formState.firstname,
           lastname: formState.lastname,
           email: formState.email,
           password: formState.password,

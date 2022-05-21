@@ -16,7 +16,6 @@ import { ADD_SCORE } from "../utils/mutations";
 import { useParams } from "react-router-dom";
 
 function Gametwo() {
-  
   const { level } = useParams();
   const { loading, data } = useQuery(QUERY_GAMES);
   console.log(data);
@@ -46,7 +45,6 @@ function Gametwo() {
     return letters;
   };
 
-
   // add score
 
   // handleclick function for when guesses are made
@@ -60,7 +58,7 @@ function Gametwo() {
       }
       if (alphabetPosition === letters.length - 1) {
         console.log("game over - you win");
-        
+
         setTimerActive(false);
         try {
           const { data } = addScore({
@@ -72,9 +70,6 @@ function Gametwo() {
         } catch (err) {
           console.error(err);
         }
-        handleLevelIncrease(level)
-        console.log(level)
-
       }
     }
     //set to default state once game over
