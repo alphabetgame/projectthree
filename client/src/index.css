@@ -30,6 +30,7 @@ h1 {
 img {
   padding: 5px;
   width: 200px;
+  align-items: center;
 }
 
 input {
@@ -55,6 +56,12 @@ input {
   color: #c14868;
   text-shadow: 2px 2px white;
   text-align: center;
-  margin-top: 0;
+
   font-size: 25px;
+}
+
+@media screen and (max-width: 905px) {
+  .extra-icon {
+    display: none;
+  }
 }
