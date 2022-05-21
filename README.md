@@ -8,7 +8,6 @@
 - [Built With](#built-with)
 - [Getting Started](#getting-started)
 - [Installation](#installation)
-- [Usage](#usage)
 - [License](#license)
 - [Links](#links)
 - [Screenshot](#screenshot)
@@ -45,18 +44,18 @@ Finally, "npm run develop" is required to launch the application.
 
 It is important to note, this application has been deployed to Heroku, so the steps listed above were finalized on the development side and are not required to use the application.
 
-## Usage
-
 ## License
 
 This application is covered under an MIT License.
 
 ## Links
 
-Deployed on Heroku - https://alphabet-game-project.herokuapp.com/
-GitHub Repository - https://github.com/alphabetgame/projectthree
+- Deployed on Heroku - https://alphabet-game-project.herokuapp.com/
+- GitHub Repository - https://github.com/alphabetgame/projectthree
 
 ## Screenshot
+
+![Screenshot of code snippets and the header from our application.]("./public/screenshot.png)
 
 ## Contact Us
 
@@ -64,12 +63,12 @@ Jason Burke
 
 - Email: jasonsburke90@gmail.com
 - GitHub: https://github.com/Jasonsburke90
-- Linkedin:
+- Linkedin: https://www.linkedin.com/in/jason-burke-a29658223/
 
 Rachel Haddad
 
 - Email: yarkony.rachel@gmail.com
-- GitHub: github.com/buttercupsmom
+- GitHub: https://github.com/buttercupsmom
 - Linkedin: https://www.linkedin.com/in/rachelehaddad/
 
 Brian Holbrook
