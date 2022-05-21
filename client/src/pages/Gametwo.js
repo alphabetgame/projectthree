@@ -13,9 +13,11 @@ import Letter from "../components/Letter";
 import { QUERY_GAMES } from "../utils/query";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_SCORE } from "../utils/mutations";
+import { useParams } from "react-router-dom";
 
-function Gametwo(props) {
-  const { level } = props;
+function Gametwo() {
+  
+  const { level } = useParams();
   const { loading, data } = useQuery(QUERY_GAMES);
   console.log(data);
   const words = data?.games[level].solution.split(",") || [];
@@ -23,8 +25,6 @@ function Gametwo(props) {
   const [letters, setLetters ]= useState([]);
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-
-  
   // new timer stuff
   const [start, setStart] = useState();
   const [now, setNow] = useState(start);
@@ -45,8 +45,8 @@ function Gametwo(props) {
   
  }
 
+
  
-  
   
   // add score
   
@@ -61,6 +61,7 @@ function Gametwo(props) {
       }
       if (alphabetPosition === letters.length - 1) {
         console.log("game over - you win");
+        
         setTimerActive(false);
         try {
           const { data } = addScore({
@@ -72,6 +73,9 @@ function Gametwo(props) {
         } catch (err) {
           console.error(err);
         }
+        handleLevelIncrease(level)
+        console.log(level)
+
       }
     }
     //set to default state once game over
