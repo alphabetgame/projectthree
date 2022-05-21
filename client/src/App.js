@@ -14,6 +14,7 @@ import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 import Game from "./pages/Game";
 import Gameone from "./pages/Gameone";
 import Gametwo from "./pages/Gametwo";
@@ -58,6 +59,7 @@ function App() {
               path="/game"
               element={<Game handleLevelIncrease={handleLevelIncrease} />}
             />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/gameone" element={<Gameone />} />
             <Route path="/gametwo" element={<Gametwo level={level} />} />
           </Routes>
