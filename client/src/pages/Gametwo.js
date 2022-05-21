@@ -16,20 +16,33 @@ import { ADD_SCORE } from "../utils/mutations";
 
 function Gametwo(props) {
   const { level } = props;
-
   const { loading, data } = useQuery(QUERY_GAMES);
-  const letters = data?.games[level].solution.split("") || [];
+  console.log(data);
+  const words = data?.games[level].solution.split(",") || [];
 
+  const [letters, setLetters ]= useState([]);
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
-
-  const delay = (time) => new Promise((res) => setTimeout(res, time));
-  const [seconds, setSeconds] = useState(10);
   const [timerActive, setTimerActive] = useState(false);
   const [gameOver, setGameOver] = useState(false);
-  // add score
+  const [seconds, setSeconds] = useState(10);
   const [addScore, { error }] = useMutation(ADD_SCORE);
-  console.log(letters);
+
+  const delay = (time) => new Promise((res) => setTimeout(res, time));
+
+ const handleWord = (word) => {
+  //  choose item form array of words
+    const letters = word[Math.floor(Math.random() * word.length)].split("")
+    
+    return letters;
+  
+ }
+
+ 
+  
+  
+  // add score
+  
   // handleclick function for when guesses are made
   const handleCardClick = (e, letter) => {
     //  when a card is clicked, this is what goes here
@@ -55,9 +68,6 @@ function Gametwo(props) {
       }
     }
     //set to default state once game over
-
-    // console.log(letter);
-
     //if statement that checks whether the user chose correctly or not
   };
 
@@ -101,13 +111,17 @@ function Gametwo(props) {
   // start game function
   const playGameButton = async (event) => {
     event.preventDefault();
+    const pickedWord = handleWord(words);
+    console.log("words", words);
+    setLetters(pickedWord);
     // hide instructions
     document.getElementById("instructions").classList.add("hidden");
     // show word prompt then remove
     await showPrompt();
     // activate game after show prompt, timer and shuffled letters
     setTimerActive(true);
-    setShuffleLetters(shuffled(letters));
+    
+    setShuffleLetters(shuffled(pickedWord));
   };
 
   // WHEN game starts, display alphabet cards when game begins for 5 seconds, then letters disapear, then display alphabet out of order at bottom
