@@ -10,22 +10,6 @@ function Navigation() {
   function showNavigation() {
     const isLoggedIn = Auth.loggedIn();
     return (
-      // <div className="container">
-      //   <ul className="flex-row">
-      //     <li className="mx-1">
-      //       <Link to="/">Home/Logo</Link>
-      //     </li>
-      //     <li className="mx-1">
-      //       <Link to="/signup">Signup</Link>
-      //     </li>
-      //     <li className="mx-1">
-      //       <Link to="/login">Login</Link>
-      //     </li>
-      //     <li className="mx-1">
-      //       <Link to="/game">Game</Link>
-      //     </li>
-      //   </ul>
-      // </div>
       <Navbar className="navbar" expand="lg" sticky="top">
         <Container>
           <Navbar.Brand>

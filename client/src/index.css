@@ -42,7 +42,34 @@ input {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 5px;
+  align-items: stretch;
+}
+
+.input-text {
+  color: #717574;
+  font-weight: bold;
+  text-shadow: 2px 2px white;
+}
+
+.signUp {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp-label {
+  text-align: right;
   align-items: flex-end;
+}
+
+.signup-title {
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px #c14868;
+  font-size: 36px;
+  font-weight: bold;
 }
 
 .logo {
@@ -50,6 +77,14 @@ input {
   font-size: 50px;
   text-align: center;
   margin-bottom: 0%;
+}
+
+.signupContainer {
+  flex-wrap: wrap;
+  max-width: auto 100px;
+  margin: auto;
+  text-align: center;
+  padding-top: 5em;
 }
 
 .tag-line {
