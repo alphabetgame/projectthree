@@ -7,10 +7,26 @@ db.once("open", async () => {
   const game = await Game.insertMany([
     { name: "Alphabet Game", solution: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", level: 1 },
     {
-      name: "Bird",
-      solution: "BIRD",
+      name: "spelling 1",
+      solution: "CAT,DAY,NICE,SHE,THEN,FROM,MUST,PLEASE,ASK,BIG",
       level: 2,
     },
+    {
+      name: "spelling 2",
+      solution: "BIRD,SWAY,LINE,MANY,SURE,WENT,HOUSE,DRINK,WRONG,YOUNG",
+      level: 3,
+    },
+    {
+      name: "spelling 3",
+      solution: "SCAR,MEND,CREDIT,ARGUE,CAUSE,STUMBLE,PREDICT,STARVE,PRANK,MARINE",
+      level: 4,
+    },
+    {
+      name: "spelling 4",
+      solution: "DETAIL,PREVIOUS,CONFIRM,AVOID,TYPICAL,RESULT,INFER,DIALOGUE,JARGON,MYTH",
+      level: 5,
+    },
+
   ]);
 
   console.log("games seeded");
