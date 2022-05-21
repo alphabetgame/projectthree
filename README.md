@@ -32,6 +32,8 @@ This application was deployed using Heroku.
 
 This application requires a name, email, and password to use. This sign-up feature allows parents to save their child's scores and keep track of the practice they have done through the app.
 
+Because the application is deployed on Heroku with the seed data, the application is ready to use once the user hits the homepage.
+
 ## Installation
 
 To build this application, we ran an "npm i" in the root, client, and server folders.
@@ -55,7 +57,7 @@ This application is covered under an MIT License.
 
 ## Screenshot
 
-![Screenshot of code snippets and the header from our application.]("./public/screenshot.png)
+![Screenshot of code snippets and the header from our application.]("client/public/screenshot.png")
 
 ## Contact Us
 
@@ -81,7 +83,7 @@ Jose Guzman
 
 - Email: josemguzman784@gmail.com
 - GitHub: https://github.com/JMGuzman-784
-- Linkedin:
+- Linkedin: https://www.linkedin.com/in/guzmanjose86/
 
 Heather Stevens
 
