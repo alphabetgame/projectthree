@@ -75,7 +75,7 @@ Brian Holbrook
 
 - Email: brian.holbrook56@gmail.com
 - GitHub: https://github.com/holbrookb23
-- Linkedin:
+- Linkedin: https://www.linkedin.com/in/brian-holbrook-550225226/
 
 Jose Guzman
 
