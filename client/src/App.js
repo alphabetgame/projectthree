@@ -11,8 +11,8 @@ import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Nav from "./components/Nav";
-import Header from "./components/Header";
+import Navigation from "./components/Nav";
+// import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Game from "./pages/Game";
 import Gameone from "./pages/Gameone";
@@ -47,9 +47,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header></Header>
+        {/* <Header></Header> */}
         <div>
-          <Nav />
+          <Navigation />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
