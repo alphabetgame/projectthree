@@ -10,3 +10,16 @@ export const QUERY_GAMES = gql`
     }
   }
 `;
+
+export const QUERY_USER = gql`
+  {
+    user {
+      firstName
+      lastName
+      scores {
+        score
+        game
+      }
+    }
+  }
+`;
