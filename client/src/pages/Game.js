@@ -10,14 +10,18 @@ import "../components/Game.css";
 import { Link } from "react-router-dom";
 import Timer from "../components/Timer";
 
-function Game(props) {
-  const { handleLevelIncrease } = props;
+function Game() {
+  
   // code used from arrayOfAlphabet.js from github
   // buttons to link to game options
   return (
     <div>
       <button>
-        <Link to="/gameone">Game One</Link>
+        <Link to="/gameone">Alphabet Game</Link>
+        <Link to="/gametwo/1">Game One</Link>
+        <Link to="/gametwo/2">Game Two</Link>
+        <Link to="/gametwo/3">Game Three</Link>
+        <Link to="/gametwo/4">Game Four</Link>
       </button>
     </div>
   );
