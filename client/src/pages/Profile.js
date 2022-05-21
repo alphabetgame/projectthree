@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/query";
+import "./Profile.css";
 //signup, login, description/directions of the game
 
 const Profile = () => {
@@ -20,9 +21,9 @@ const Profile = () => {
         <div>loading</div>
       ) : (
         <>
-          <div>Welcome, {userFirstName}!</div>
-          <div>
-            Your past results are
+          <div className="text">Welcome, {userFirstName}!</div>
+          <div className="body-text">
+            Your past scores:
             {userScores?.map((score, index) => (
               <div key={index}>
                 {score.game}:{score.score} seconds
