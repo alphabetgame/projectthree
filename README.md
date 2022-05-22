@@ -57,7 +57,7 @@ This application is covered under an MIT License.
 
 ## Screenshot
 
-![Screenshot of code snippets and the header from our application.]("client/public/screenshot.png")
+[![Screenshot of code snippets and the header from our application.](./client/public/screenshot.png)](./client/public/screenshot.png)
 
 ## Contact Us
 
