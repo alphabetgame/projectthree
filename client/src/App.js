@@ -16,10 +16,12 @@ import Navigation from "./components/Nav";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import Game from "./pages/Game";
-import Gameone from "./pages/Gameone";
-import Gametwo from "./pages/Gametwo";
+import Gameloader from "./pages/Gameloader";
 import "./index.css";
 import "./App.css";
+
+
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -60,8 +62,8 @@ function App() {
               element={<Game handleLevelIncrease={handleLevelIncrease} />}
             />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/gameone" element={<Gameone />} />
-            <Route path="/gametwo/:level" element={<Gametwo />} />
+            <Route path="/game/:level" element={<Gameloader />} />
+            
           </Routes>
 
           <Home></Home>

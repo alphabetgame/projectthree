@@ -18,6 +18,11 @@ import { Link, useParams } from "react-router-dom";
 function Gametwo() {
   // level of difficulty passed in using params
   const { level } = useParams();
+  // variables for link pages
+  const playAgain = "/gametwo/" + level;
+  const nxtLvl = parseInt(level)+1;
+  const nextGame = "/gametwo/"+ nxtLvl;
+  
   // query game for the array of data based on difficulty
   const { loading, data } = useQuery(QUERY_GAMES);
   // gathers all words from the level of difficulty
@@ -62,6 +67,8 @@ function Gametwo() {
         setAlphabetPosition(newPosition);
         // we hide letters once they have been correctly guessed
         e.target.classList.add("hidden");
+      } else {
+        getElementById('stuff').classList.add('letter')
       }
       // player wins if they reach the end of the solution state, alphabetPosition
       if (alphabetPosition === letters.length - 1) {
@@ -87,33 +94,44 @@ function Gametwo() {
     //if statement that checks whether the user chose correctly or not
   };
 
-  function endGame() {
+  // skeleton for shaking letter animation if choice is wrong
+  // const runShake = () => {
+  //   const [count, setCount] = React.useState(0)
+  
+  //   // Use useRef for mutable variables that we want to persist
+  //   // without triggering a re-render on their change
+  //   const requestRef = React.useRef();
+  //   const previousTimeRef = React.useRef();
+    
+  //   const animate = time => {
+  //     if (previousTimeRef.current != undefined) {
+  //       const deltaTime = time - previousTimeRef.current;
+        
+  //       // Pass on a function to the setter of the state
+  //       // to make sure we always have the latest state
+  //       setCount(prevCount => (prevCount + deltaTime * 0.01) % 100);
+  //     }
+  //     previousTimeRef.current = time;
+  //     requestRef.current = requestAnimationFrame(animate);
+  //   }
+    
+  //   React.useEffect(() => {
+  //     requestRef.current = requestAnimationFrame(animate);
+  //     return () => cancelAnimationFrame(requestRef.current);
+  //   }, []); // Make sure the effect runs only once
+    
+  //   return <div>{Math.round(count)}</div>
+  
+  // }
+
+  function endgame() {
+    useEffect(() => {
     if(hasWon) {
       document.getElementById("winloss").classList.add("win");
-      // const currentLevel = "/gametwo/" + level.toString();
-      // const newLvl = 3;
-      // const nextLevel = "/gametwo/" + newLvl.toString();
-      // // return (
-      //   <div className="banny">
-      //     <h4>You won!</h4>
-      //     <div>
-      //       <button><Link to={currentLevel} onClick={() => window.location.reload()}>Play Again?</Link></button>
-      //       <button><Link to={nextLevel}>Next Game</Link></button>
-      //     </div>
-      //   </div>
-      // )
+   
     } else if (gameOver && !hasWon) {
       document.getElementById("winloss").classList.add("lose");
-      // return (
-      //   <div className="banny">
-      //     <h4>Game over :/</h4>
-      //     <div>
-      //       <button><Link to="/gametwo/2" onClick={() => window.location.reload()}>Play Again?</Link></button>
-      //       <button><Link to="/">Home</Link></button>
-      //     </div>
-      //   </div>
-      // )
-}
+  }})
   
   
 };
@@ -144,8 +162,12 @@ function Gametwo() {
         return () => clearInterval(interval);
       }
     });
+    let time = 0+":"+secondsLeft;
+    if (secondsLeft < 10) {
+       time = 0+":"+0+secondsLeft;
+    }
     // Seconds remaining display
-    return <div className="">Seconds remaining: {secondsLeft}</div>;
+    return <div className="time-cont"><div id="timer" className="clock">{time}</div></div>;
   }
   // showprompt function
   const showPrompt = async () => {
@@ -154,6 +176,8 @@ function Gametwo() {
     await delay(5000);
     // hide word prompt
     setPromptHidden(true);
+    // makes buttons clickable
+    document.getElementById('prompt').classList.remove("events");
   };
 
   // start game function
@@ -179,25 +203,24 @@ function Gametwo() {
     <div className="t-cont">
       {!gameOver ? null :
       hasWon ? (<div className="banny">
-      <h4>You won!</h4>
+      <h4 className="lvl-lbl">You won!</h4>
       <div>
-        <button><Link to="/gametwo/2" className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
-        <button><Link to="/gametwo/3" className="btn-l">Next Game</Link></button>
+        <button><Link to={playAgain} className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
+        <button><Link to={nextGame} className="btn-l">Next Game</Link></button>
       </div>
     </div>) : ( <div className="banny">
-          <h4>Game over</h4>
+          <h4 className="lvl-lbl">Game over</h4>
           <div>
-            <button><Link to="/gametwo/2" className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
+            <button><Link to={playAgain} className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
             <button><Link to="/" className="btn-l">Home</Link></button>
           </div>
         </div>)}
-      <div id="winloss" className="game-cont">
-        
+      <div id="winloss" className="game-cont" endGame={endgame()}>
         
         {promptHidden ? null : (
-          <div id="prompt" className="container">
+          <div id="prompt" className="container events">
             {letters.map((letter) => (
-              <Letter letter={letter} />
+              <Letter letter={letter} id="stuff" />
             ))}
           </div>
         )}
@@ -218,10 +241,10 @@ function Gametwo() {
         ) : (
           <>
             <Timer />
-            <div className="container">
-              {shuffleLetters.map((letter) => (
-                <Letter letter={letter} handleCardClick={handleCardClick} />
-              ))}
+            <div id="lets" className="container">
+                {shuffleLetters.map((letter) => (
+                  <Letter letter={letter} handleCardClick={handleCardClick} />
+                ))}
             </div>
           </>
         )}
