@@ -15,14 +15,14 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_SCORE } from "../utils/mutations";
 import { Link, useParams } from "react-router-dom";
 
-function Gametwo() {
+function GameLoader() {
   // level of difficulty passed in using params
   const { level } = useParams();
   // variables for link pages
-  const playAgain = "/gametwo/" + level;
-  const nxtLvl = parseInt(level)+1;
-  const nextGame = "/gametwo/"+ nxtLvl;
-  
+  const playAgain = "/game/" + level;
+  const nxtLvl = parseInt(level) + 1;
+  const nextGame = "/game/" + nxtLvl;
+
   // query game for the array of data based on difficulty
   const { loading, data } = useQuery(QUERY_GAMES);
   // gathers all words from the level of difficulty
@@ -68,7 +68,7 @@ function Gametwo() {
         // we hide letters once they have been correctly guessed
         e.target.classList.add("hidden");
       } else {
-        getElementById('stuff').classList.add('letter')
+        getElementById("stuff").classList.add("letter");
       }
       // player wins if they reach the end of the solution state, alphabetPosition
       if (alphabetPosition === letters.length - 1) {
@@ -97,16 +97,16 @@ function Gametwo() {
   // skeleton for shaking letter animation if choice is wrong
   // const runShake = () => {
   //   const [count, setCount] = React.useState(0)
-  
+
   //   // Use useRef for mutable variables that we want to persist
   //   // without triggering a re-render on their change
   //   const requestRef = React.useRef();
   //   const previousTimeRef = React.useRef();
-    
+
   //   const animate = time => {
   //     if (previousTimeRef.current != undefined) {
   //       const deltaTime = time - previousTimeRef.current;
-        
+
   //       // Pass on a function to the setter of the state
   //       // to make sure we always have the latest state
   //       setCount(prevCount => (prevCount + deltaTime * 0.01) % 100);
@@ -114,27 +114,25 @@ function Gametwo() {
   //     previousTimeRef.current = time;
   //     requestRef.current = requestAnimationFrame(animate);
   //   }
-    
+
   //   React.useEffect(() => {
   //     requestRef.current = requestAnimationFrame(animate);
   //     return () => cancelAnimationFrame(requestRef.current);
   //   }, []); // Make sure the effect runs only once
-    
+
   //   return <div>{Math.round(count)}</div>
-  
+
   // }
 
   function endgame() {
     useEffect(() => {
-    if(hasWon) {
-      document.getElementById("winloss").classList.add("win");
-   
-    } else if (gameOver && !hasWon) {
-      document.getElementById("winloss").classList.add("lose");
-  }})
-  
-  
-};
+      if (hasWon) {
+        document.getElementById("winloss").classList.add("win");
+      } else if (gameOver && !hasWon) {
+        document.getElementById("winloss").classList.add("lose");
+      }
+    });
+  }
   //   shuffle letters function
   const shuffled = (letters) =>
     letters
@@ -162,12 +160,18 @@ function Gametwo() {
         return () => clearInterval(interval);
       }
     });
-    let time = 0+":"+secondsLeft;
+    let time = 0 + ":" + secondsLeft;
     if (secondsLeft < 10) {
-       time = 0+":"+0+secondsLeft;
+      time = 0 + ":" + 0 + secondsLeft;
     }
     // Seconds remaining display
-    return <div className="time-cont"><div id="timer" className="clock">{time}</div></div>;
+    return (
+      <div className="time-cont">
+        <div id="timer" className="clock">
+          {time}
+        </div>
+      </div>
+    );
   }
   // showprompt function
   const showPrompt = async () => {
@@ -177,7 +181,7 @@ function Gametwo() {
     // hide word prompt
     setPromptHidden(true);
     // makes buttons clickable
-    document.getElementById('prompt').classList.remove("events");
+    document.getElementById("prompt").classList.remove("events");
   };
 
   // start game function
@@ -201,22 +205,52 @@ function Gametwo() {
 
   return (
     <div className="t-cont">
-      {!gameOver ? null :
-      hasWon ? (<div className="banny">
-      <h4 className="lvl-lbl">You won!</h4>
-      <div>
-        <button><Link to={playAgain} className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
-        <button><Link to={nextGame} className="btn-l">Next Game</Link></button>
-      </div>
-    </div>) : ( <div className="banny">
+      {!gameOver ? null : hasWon ? (
+        <div className="banny">
+          <h4 className="lvl-lbl">You won!</h4>
+          <div>
+            <button>
+              <Link
+                to={playAgain}
+                className="btn-l"
+                onClick={() => window.location.reload()}
+              >
+                Play Again
+              </Link>
+            </button>
+            <button>
+              <Link
+                to={nextGame}
+                className="btn-l"
+                onClick={(() => setTimeout(window.location.reload()), 1)}
+              >
+                Next Game
+              </Link>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="banny">
           <h4 className="lvl-lbl">Game over</h4>
           <div>
-            <button><Link to={playAgain} className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
-            <button><Link to="/" className="btn-l">Home</Link></button>
+            <button>
+              <Link
+                to={playAgain}
+                className="btn-l"
+                onClick={() => window.location.reload()}
+              >
+                Play Again
+              </Link>
+            </button>
+            <button>
+              <Link to="/" className="btn-l">
+                Home
+              </Link>
+            </button>
           </div>
-        </div>)}
+        </div>
+      )}
       <div id="winloss" className="game-cont" endGame={endgame()}>
-        
         {promptHidden ? null : (
           <div id="prompt" className="container events">
             {letters.map((letter) => (
@@ -227,10 +261,14 @@ function Gametwo() {
         {gameHidden ? (
           <>
             <div id="instructions" className="instructs">
-              <label htmlFor="instructions" className="ins-lbl">Instructions</label>
-              <p className="ins-p">When you hit the Play Game button a word will be displayed for 5
-              seconds. Its letters will then get scrambled, and you'll have 10 seconds
-              to spell it correctly!</p>
+              <label htmlFor="instructions" className="ins-lbl">
+                Instructions
+              </label>
+              <p className="ins-p">
+                When you hit the Play Game button a word will be displayed for 5
+                seconds. Its letters will then get scrambled, and you'll have 10
+                seconds to spell it correctly!
+              </p>
             </div>
             <div className="ply-btn">
               <button id="play" className="" onClick={playGameButton}>
@@ -242,15 +280,14 @@ function Gametwo() {
           <>
             <Timer />
             <div id="lets" className="container">
-                {shuffleLetters.map((letter) => (
-                  <Letter letter={letter} handleCardClick={handleCardClick} />
-                ))}
+              {shuffleLetters.map((letter) => (
+                <Letter letter={letter} handleCardClick={handleCardClick} />
+              ))}
             </div>
           </>
         )}
       </div>
-      
     </div>
   );
 }
-export default Gametwo;
+export default GameLoader;
