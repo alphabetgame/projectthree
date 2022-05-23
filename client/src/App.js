@@ -61,7 +61,7 @@ function App() {
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/gameone" element={<Gameone />} />
-            <Route path="/gametwo" element={<Gametwo level={level} />} />
+            <Route path="/gametwo/:level" element={<Gametwo />} />
           </Routes>
 
           <Home></Home>

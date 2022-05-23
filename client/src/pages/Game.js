@@ -15,14 +15,20 @@ function Game() {
   // code used from arrayOfAlphabet.js from github
   // buttons to link to game options
   return (
-    <div>
-      <button>
-        <Link to="/gameone">Alphabet Game</Link>
-        <Link to="/gametwo/1">Game One</Link>
-        <Link to="/gametwo/2">Game Two</Link>
-        <Link to="/gametwo/3">Game Three</Link>
-        <Link to="/gametwo/4">Game Four</Link>
-      </button>
+    <div className="lvl-s">
+      <div>
+        <button><Link to="/gametwo/0" className="btn-l">Alphabet Game</Link></button>
+      </div>
+      <div className="lvl-s">
+        <label className="lvl-lbl">Spelling</label>
+        <div>
+          <button><Link to="/gametwo/1" className="btn-l">Grade One</Link></button>
+          <button><Link to="/gametwo/2" className="btn-l">Grade Two</Link></button>
+          <button><Link to="/gametwo/3" className="btn-l">Grade Three</Link></button>
+          <button><Link to="/gametwo/4" className="btn-l">Grade Four</Link></button>
+        </div>
+      </div>
+      
     </div>
   );
 }
