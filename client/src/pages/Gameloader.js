@@ -280,7 +280,7 @@ function GameLoader() {
         )}
         {gameHidden ? (
           <>
-            <div id="" className="instructs">
+            <div id="instructions" className="instructs">
               <label htmlFor="instructions" className="ins-lbl">
                 Instructions
               </label>
