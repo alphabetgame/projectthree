@@ -26,7 +26,7 @@ const Profile = () => {
             Your past scores:
             {userScores?.map((score, index) => (
               <div key={index}>
-                {score.game}:{score.score} seconds
+                Spelled word {score.game} with {score.score} seconds remaining
               </div>
             ))}
           </div>
