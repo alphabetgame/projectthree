@@ -1,15 +1,25 @@
+@font-face {
+  font-family: "Nunito";
+  src: local("Nunito"), url(../src/Nunito.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Koulen";
+  src: local("Koulen"), url(../src/Koulen.ttf) format("truetype");
+}
+
 :root {
   --green: #a5a655;
   --yellow: #e0b342;
   --pink: #c14868;
   --turquoise: #48bccd;
   --grey: #717574;
-  --font: "Nunito", sans-serif;
+  --font: "Koulen", sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Koulen", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffdf4f;
