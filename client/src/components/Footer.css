@@ -1,4 +1,4 @@
-.container {
+.container-fluid {
   padding-bottom: 60px;
   min-height: 100%;
   position: relative;
@@ -19,4 +19,16 @@ footer {
   height: 60px;
   margin-left: 0px;
   margin-right: 0px;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
 }
