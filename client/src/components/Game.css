@@ -240,6 +240,8 @@ button span:hover:after {
   margin-left: 20%;
   margin-right: 20%;
   padding: 0.5rem;
+  background-color: var(--turquoise);
+  color: white;
 }
 
 .ply-btn {
@@ -249,6 +251,7 @@ button span:hover:after {
 
 .ins-lbl {
   border-bottom: #c14868 solid 0.03rem;
+  font-size: 26px;
 }
 
 .ins-p {
