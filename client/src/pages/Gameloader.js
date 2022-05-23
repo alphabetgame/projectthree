@@ -7,6 +7,7 @@
 import React, { Component, useState, useEffect } from "react";
 import "../components/LetterCard.css";
 import "../components/Game.css";
+import Auth from "../utils/auth";
 import Letter from "../components/Letter";
 
 //import Timer from "../components/Timer";
@@ -18,6 +19,8 @@ import { Link, useParams } from "react-router-dom";
 function GameLoader() {
   // level of difficulty passed in using params
   const { level } = useParams();
+  // variable for iflogged in
+  const isLoggedIn = Auth.loggedIn();
   // variables for link pages
   const playAgain = "/game/" + level;
   const nxtLvl = parseInt(level) + 1;
@@ -78,15 +81,17 @@ function GameLoader() {
         // stop the timer
         setTimerActive(false);
         // send the users score (timeleft) and the word they solved to the database
-        try {
-          const { data } = addScore({
-            variables: {
-              game: letters.join("").toString(),
-              score: secondsLeft,
-            },
-          });
-        } catch (err) {
-          console.error(err);
+        if (isLoggedIn) {
+          try {
+            const { data } = addScore({
+              variables: {
+                game: letters.join("").toString(),
+                score: secondsLeft,
+              },
+            });
+          } catch (err) {
+            console.error(err);
+          }
         }
       }
     }
