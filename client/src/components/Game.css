@@ -7,7 +7,7 @@ button {
   color: white;
   padding: 14px 65px;
   border-radius: 5px;
-  margin: 14px 0px;
+  margin: 1rem;
   cursor: pointer;
   line-height: 42px;
   background-color: var(--green);
@@ -97,3 +97,130 @@ button span:hover:before {
 button span:hover:after {
   width: 100%;
 }
+
+/* buttons */
+
+.btn-l {
+  text-decoration: none;
+  color: white;
+}
+
+.btn-l:hover {
+  color: var(--turquoise);
+}
+
+/* game animations */
+
+.win {
+  
+  animation: win normal;
+  animation-duration: 4s;
+  animation-fill-mode: forwards; 
+}
+
+@keyframes win {
+  from {
+    background-color: #ffdf4f;
+    opacity: 100%;
+  }
+  to {
+    opacity: 50%;
+    background-color: #00e431;
+    animation-play-state: paused;
+   }
+} 
+
+.lose {
+  animation: lose normal;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;             
+}
+
+@keyframes lose {
+  from {
+    background-color: #ffdf4f;
+    opacity: 100%;
+  }
+  100% {
+    opacity: 50%;
+    background-color: #e42424;
+   }
+}
+
+.banny {
+  z-index: 1;
+  position: absolute;
+  border-top: #c14868 solid .08rem;
+  border-bottom: #c14868 solid .08rem;
+  width: 100%;
+  background-color: #ffdf4f;
+  text-align: center;
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  box-shadow: #8b334b 0rem .2rem .3rem .02rem;
+  animation: banner normal;
+  animation-duration: 2s;
+  
+}
+
+@keyframes banner {
+  from {
+    opacity: 0;
+    z-index: 0;
+    
+  }
+  to {
+    opacity: 1;
+    z-index: 1;
+  }
+}
+
+.t-cont {
+  position: relative;
+}
+
+.game-cont {
+  margin-top: 0rem;
+  
+}
+
+.instructs {
+  text-align: center;
+  border: #c14868 solid .03rem;
+  border-radius: .25rem;
+  box-shadow: #8b334b 0rem .1rem .3rem .02rem;
+  margin-top: 1rem;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: .5rem;
+}
+
+.ply-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.ins-lbl {
+  border-bottom: #c14868 solid .03rem;
+}
+
+.ins-p {
+  padding-top: .4rem;
+}
+
+/* level select */
+.lvl-s {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* steal sign-up label */
+.lvl-lbl{
+
+
+}
+
+

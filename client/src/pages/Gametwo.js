@@ -13,7 +13,7 @@ import Letter from "../components/Letter";
 import { QUERY_GAMES } from "../utils/query";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_SCORE } from "../utils/mutations";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Gametwo() {
   // level of difficulty passed in using params
@@ -26,8 +26,9 @@ function Gametwo() {
   const [letters, setLetters] = useState([]);
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
+  const [hasWon, setHasWon] = useState(false);
+  // new timer stuff
 
-  // timer function states
   const [start, setStart] = useState();
   const [now, setNow] = useState(start);
   const seconds = Math.floor((now - start) / 1000);
@@ -64,7 +65,9 @@ function Gametwo() {
       }
       // player wins if they reach the end of the solution state, alphabetPosition
       if (alphabetPosition === letters.length - 1) {
-        console.log("game over - you win");
+        setTimerActive(false);
+        setGameOver(true);
+        setHasWon(true);
         // stop the timer
         setTimerActive(false);
         // send the users score (timeleft) and the word they solved to the database
@@ -84,6 +87,36 @@ function Gametwo() {
     //if statement that checks whether the user chose correctly or not
   };
 
+  function endGame() {
+    if(hasWon) {
+      document.getElementById("winloss").classList.add("win");
+      // const currentLevel = "/gametwo/" + level.toString();
+      // const newLvl = 3;
+      // const nextLevel = "/gametwo/" + newLvl.toString();
+      // // return (
+      //   <div className="banny">
+      //     <h4>You won!</h4>
+      //     <div>
+      //       <button><Link to={currentLevel} onClick={() => window.location.reload()}>Play Again?</Link></button>
+      //       <button><Link to={nextLevel}>Next Game</Link></button>
+      //     </div>
+      //   </div>
+      // )
+    } else if (gameOver && !hasWon) {
+      document.getElementById("winloss").classList.add("lose");
+      // return (
+      //   <div className="banny">
+      //     <h4>Game over :/</h4>
+      //     <div>
+      //       <button><Link to="/gametwo/2" onClick={() => window.location.reload()}>Play Again?</Link></button>
+      //       <button><Link to="/">Home</Link></button>
+      //     </div>
+      //   </div>
+      // )
+}
+  
+  
+};
   //   shuffle letters function
   const shuffled = (letters) =>
     letters
@@ -143,32 +176,57 @@ function Gametwo() {
   };
 
   return (
-    <div>
-      <div id="instructions" className="">
-        When you hit the Play Game button a word will be displayed for 5
-        seconds. Its letters will then get scrambled, and you'll have 10 seconds
-        to spell it correctly!
+    <div className="t-cont">
+      {!gameOver ? null :
+      hasWon ? (<div className="banny">
+      <h4>You won!</h4>
+      <div>
+        <button><Link to="/gametwo/2" className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
+        <button><Link to="/gametwo/3" className="btn-l">Next Game</Link></button>
       </div>
-      {promptHidden ? null : (
-        <div id="prompt" className="container">
-          {letters.map((letter) => (
-            <Letter letter={letter} />
-          ))}
-        </div>
-      )}
-      {gameHidden ? null : (
-        <>
-          <Timer />
-          <div className="container">
-            {shuffleLetters.map((letter) => (
-              <Letter letter={letter} handleCardClick={handleCardClick} />
+    </div>) : ( <div className="banny">
+          <h4>Game over</h4>
+          <div>
+            <button><Link to="/gametwo/2" className="btn-l" onClick={() => window.location.reload()}>Play Again</Link></button>
+            <button><Link to="/" className="btn-l">Home</Link></button>
+          </div>
+        </div>)}
+      <div id="winloss" className="game-cont">
+        
+        
+        {promptHidden ? null : (
+          <div id="prompt" className="container">
+            {letters.map((letter) => (
+              <Letter letter={letter} />
             ))}
           </div>
-        </>
-      )}
-      <button id="play" className="" onClick={playGameButton}>
-        Play!
-      </button>
+        )}
+        {gameHidden ? (
+          <>
+            <div id="instructions" className="instructs">
+              <label htmlFor="instructions" className="ins-lbl">Instructions</label>
+              <p className="ins-p">When you hit the Play Game button a word will be displayed for 5
+              seconds. Its letters will then get scrambled, and you'll have 10 seconds
+              to spell it correctly!</p>
+            </div>
+            <div className="ply-btn">
+              <button id="play" className="" onClick={playGameButton}>
+                Play!
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <Timer />
+            <div className="container">
+              {shuffleLetters.map((letter) => (
+                <Letter letter={letter} handleCardClick={handleCardClick} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      
     </div>
   );
 }
