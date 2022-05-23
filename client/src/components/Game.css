@@ -1,5 +1,5 @@
 /* used code from user Yuhomyan on codepen.io */
-@import url('https://fonts.googleapis.com/css?family=Orbitron');
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
 
 button {
   font-family: var(--font-family);
@@ -18,7 +18,6 @@ button {
     var(--pink) 95%
   );
   border: none;
-  
 }
 
 button span {
@@ -117,39 +116,55 @@ button span:hover:after {
   color: #e42424;
 }
 
+/* letter animations */
+/* wrong answer chosen shake */
 .letter {
   animation: shake 0.4s ease-out;
 }
 
 @keyframes shake {
   0% {
-      transform: skewX(-10deg);
+    transform: skewX(-10deg);
   }
 
   25% {
-      transform: skewX(10deg);
+    transform: skewX(10deg);
   }
 
   50% {
-      transform: skewX(-10deg);
+    transform: skewX(-10deg);
   }
 
   75% {
-      transform: skewX(10deg);
+    transform: skewX(10deg);
   }
 
   100% {
-      transform: skewX(-10deg);
+    transform: skewX(-10deg);
+  }
+}
+
+/* letter bounce */
+.letter-bounce {
+  animation: bounce 1s;
+  animation-direction: alternate;
+  animation-iteration-count: 5;
+}
+@keyframes bounce {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50px, 0);
   }
 }
 
 /* end game animations */
 
 .win {
-  
   animation: win normal;
   animation-duration: 4s;
-  animation-fill-mode: forwards; 
+  animation-fill-mode: forwards;
 }
 
 @keyframes win {
@@ -160,13 +175,13 @@ button span:hover:after {
   to {
     opacity: 50%;
     background-color: #00e431;
-   }
-} 
+  }
+}
 
 .lose {
   animation: lose normal;
   animation-duration: 4s;
-  animation-fill-mode: forwards;             
+  animation-fill-mode: forwards;
 }
 
 @keyframes lose {
@@ -177,32 +192,30 @@ button span:hover:after {
   100% {
     opacity: 50%;
     background-color: #e42424;
-   }
+  }
 }
 
 .banny {
   z-index: 1;
   position: absolute;
-  border-top: #c14868 solid .08rem;
-  border-bottom: #c14868 solid .08rem;
+  border-top: #c14868 solid 0.08rem;
+  border-bottom: #c14868 solid 0.08rem;
   width: 100%;
   background-color: #ffdf4f;
   text-align: center;
   margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
-  padding: .5rem;
-  box-shadow: #8b334b 0rem .2rem .3rem .02rem;
+  padding: 0.5rem;
+  box-shadow: #8b334b 0rem 0.2rem 0.3rem 0.02rem;
   animation: banner normal;
   animation-duration: 2s;
-  
 }
 
 @keyframes banner {
   from {
     opacity: 0;
     z-index: 0;
-    
   }
   to {
     opacity: 1;
@@ -212,23 +225,21 @@ button span:hover:after {
 
 .t-cont {
   position: relative;
-  
 }
 
 .game-cont {
   margin-top: 0rem;
-  
 }
 
 .instructs {
   text-align: center;
-  border: #c14868 solid .03rem;
-  border-radius: .25rem;
-  box-shadow: #8b334b 0rem .1rem .3rem .02rem;
+  border: #c14868 solid 0.03rem;
+  border-radius: 0.25rem;
+  box-shadow: #8b334b 0rem 0.1rem 0.3rem 0.02rem;
   margin-top: 1rem;
   margin-left: 20%;
   margin-right: 20%;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 .ply-btn {
@@ -237,11 +248,11 @@ button span:hover:after {
 }
 
 .ins-lbl {
-  border-bottom: #c14868 solid .03rem;
+  border-bottom: #c14868 solid 0.03rem;
 }
 
 .ins-p {
-  padding-top: .4rem;
+  padding-top: 0.4rem;
 }
 
 /* level select */
@@ -252,27 +263,27 @@ button span:hover:after {
 }
 
 /* steal sign-up label */
-.lvl-lbl{
+.lvl-lbl {
   color: white;
-  text-shadow: .25rem .25rem #c14868;
+  text-shadow: 0.25rem 0.25rem #c14868;
   font-size: 3rem;
   font-weight: bold;
-
 }
 
 .clock {
-  font-family: 'Orbitron', sans-serif;
-  border:#c14868 solid .01rem;
-  border-radius: .5rem;
-  box-shadow: #8b334b 0rem .1rem .3rem .02rem;
+  font-family: "Orbitron", sans-serif;
+  border: #c14868 solid 0.01rem;
+  border-radius: 0.5rem;
+  box-shadow: #8b334b 0rem 0.1rem 0.3rem 0.02rem;
   width: fit-content;
   background-color: antiquewhite;
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
 .time-cont {
-  padding-left: 1rem;
+  padding: 1rem;
   display: flex;
+  justify-content: center;
 }
 
 .events {
