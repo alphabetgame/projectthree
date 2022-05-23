@@ -1,4 +1,5 @@
 import React from "react";
+import "./../index.css";
 import Auth from "../utils/auth";
 import "../components/Nav.css";
 import { Link } from "react-router-dom";
@@ -20,7 +21,7 @@ function Navigation() {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav id="nav-column" className="me-auto">
               <Link to="/signup">Sign Up</Link>
               <Link to="/game">Game</Link>
               {isLoggedIn ? (

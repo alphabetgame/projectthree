@@ -1,8 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Nunito:wght@400;900&family=Oswald:wght@500&display=swap");
+/* 
+@font-face {
+  font-family: 'FONT NAME';
+  src: local('FONT NAME'),
+    url"https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Nunito:wght@400;900&family=Oswald:wght@500&display=swap") format('sans');
+}
+ 'embedded-opentype */
+
 .navbar {
   background-color: var(--pink);
+  border-bottom: 4px solid var(--turquoise);
+  display: flex;
+  /* flex-direction: column-reverse; */
+  /* display: flex; */
+  font-size: 36px;
 }
 
 /* Container {
   padding: 0 15px;
   flex-direction: row;
 } */
+#logo {
+  border: 4px solid var(--turquoise);
+  border-radius: 5px;
+  max-width: 100%;
+  margin: 0 auto;
+  height: auto;
+}
+
+#nav-column {
+  font-family: var(--font);
+  justify-content: flex-end;
+  align-content: flex-end;
+  flex-direction: column;
+  display: flex;
+  text-align: end;
+  max-width: 100%;
+}
