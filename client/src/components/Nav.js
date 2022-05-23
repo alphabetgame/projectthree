@@ -24,6 +24,7 @@ function Navigation() {
             <Nav id="nav-column" className="me-auto">
               <Link to="/signup">Sign Up</Link>
               <Link to="/game">Game</Link>
+              {isLoggedIn ? <Link to="/profile">Profile</Link> : null}
               {isLoggedIn ? (
                 <Link to="/" onClick={() => Auth.logout()}>
                   Logout
