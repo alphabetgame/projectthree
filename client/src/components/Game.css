@@ -1,4 +1,5 @@
 /* used code from user Yuhomyan on codepen.io */
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 button {
   font-family: var(--font-family);
@@ -17,6 +18,7 @@ button {
     var(--pink) 95%
   );
   border: none;
+  
 }
 
 button span {
@@ -111,6 +113,38 @@ button span:hover:after {
 
 /* game animations */
 
+.dng-tim {
+  color: #e42424;
+}
+
+.letter {
+  animation: shake 0.4s ease-out;
+}
+
+@keyframes shake {
+  0% {
+      transform: skewX(-10deg);
+  }
+
+  25% {
+      transform: skewX(10deg);
+  }
+
+  50% {
+      transform: skewX(-10deg);
+  }
+
+  75% {
+      transform: skewX(10deg);
+  }
+
+  100% {
+      transform: skewX(-10deg);
+  }
+}
+
+/* end game animations */
+
 .win {
   
   animation: win normal;
@@ -126,7 +160,6 @@ button span:hover:after {
   to {
     opacity: 50%;
     background-color: #00e431;
-    animation-play-state: paused;
    }
 } 
 
@@ -155,7 +188,7 @@ button span:hover:after {
   width: 100%;
   background-color: #ffdf4f;
   text-align: center;
-  margin-top: 7rem;
+  margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
   padding: .5rem;
@@ -179,6 +212,7 @@ button span:hover:after {
 
 .t-cont {
   position: relative;
+  
 }
 
 .game-cont {
@@ -219,8 +253,28 @@ button span:hover:after {
 
 /* steal sign-up label */
 .lvl-lbl{
-
+  color: white;
+  text-shadow: .25rem .25rem #c14868;
+  font-size: 3rem;
+  font-weight: bold;
 
 }
 
+.clock {
+  font-family: 'Orbitron', sans-serif;
+  border:#c14868 solid .01rem;
+  border-radius: .5rem;
+  box-shadow: #8b334b 0rem .1rem .3rem .02rem;
+  width: fit-content;
+  background-color: antiquewhite;
+  padding: .2rem;
+}
 
+.time-cont {
+  padding-left: 1rem;
+  display: flex;
+}
+
+.events {
+  pointer-events: none;
+}

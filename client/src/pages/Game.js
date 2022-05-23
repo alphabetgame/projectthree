@@ -16,16 +16,17 @@ function Game() {
   // buttons to link to game options
   return (
     <div className="lvl-s">
-      <div>
+      <div className="lvl-s">
+        <label className="lvl-lbl">Alphabet</label>
         <button><Link to="/gametwo/0" className="btn-l">Alphabet Game</Link></button>
       </div>
       <div className="lvl-s">
         <label className="lvl-lbl">Spelling</label>
         <div>
-          <button><Link to="/gametwo/1" className="btn-l">Grade One</Link></button>
-          <button><Link to="/gametwo/2" className="btn-l">Grade Two</Link></button>
-          <button><Link to="/gametwo/3" className="btn-l">Grade Three</Link></button>
-          <button><Link to="/gametwo/4" className="btn-l">Grade Four</Link></button>
+          <button><Link to="/game/1" className="btn-l">Grade One</Link></button>
+          <button><Link to="/game/2" className="btn-l">Grade Two</Link></button>
+          <button><Link to="/game/3" className="btn-l">Grade Three</Link></button>
+          <button><Link to="/game/4" className="btn-l">Grade Four</Link></button>
         </div>
       </div>
       
