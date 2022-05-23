@@ -212,7 +212,19 @@ function GameLoader() {
     <div className="t-cont">
       {!gameOver ? null : hasWon ? (
         <div className="banny">
-          <h4 className="lvl-lbl">You won!</h4>
+          <h4 className="lvl-lbl">
+            You won! You correctly solved the word {letters.join("").toString()}{" "}
+            with {secondsLeft} seconds left!
+          </h4>
+          {!isLoggedIn ? (
+            <div>
+              You are not logged in so your score was not saved!{" "}
+              <Link to="/login">Login</Link> or <Link to="/signup">Signup</Link>{" "}
+              to have your scores saved!
+            </div>
+          ) : (
+            <div>Your score was saved to your profile!</div>
+          )}
           <div>
             <button>
               <Link
@@ -236,7 +248,10 @@ function GameLoader() {
         </div>
       ) : (
         <div className="banny">
-          <h4 className="lvl-lbl">Game over</h4>
+          <h4 className="lvl-lbl">
+            Game over! You ran out of time trying to spell the word{" "}
+            {letters.join("").toString()}
+          </h4>
           <div>
             <button>
               <Link
@@ -257,7 +272,7 @@ function GameLoader() {
       )}
       <div id="winloss" className="game-cont" endGame={endgame()}>
         {promptHidden ? null : (
-          <div id="prompt" className="container events">
+          <div id="prompt" className="container events letter-bounce">
             {letters.map((letter) => (
               <Letter letter={letter} id="stuff" />
             ))}
@@ -283,12 +298,12 @@ function GameLoader() {
           </>
         ) : (
           <>
-            <Timer />
             <div id="lets" className="container">
               {shuffleLetters.map((letter) => (
                 <Letter letter={letter} handleCardClick={handleCardClick} />
               ))}
             </div>
+            <Timer />
           </>
         )}
       </div>
