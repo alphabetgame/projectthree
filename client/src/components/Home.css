@@ -1,14 +1,21 @@
 .about {
   text-align: center;
-  border: #c14868 solid 0.03rem;
+  border: #c14868 solid 1em;
   border-radius: 0.25rem;
   box-shadow: #8b334b 0rem 0.1rem 0.3rem 0.02rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-left: 20%;
   margin-right: 20%;
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: var(--turquoise);
   color: white;
+  font-size: 36px;
+}
+
+.container {
+  align-items: center;
+  justify-content: center;
+  padding: 70px 0;
 }
 
 .game-l {
