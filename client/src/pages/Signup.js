@@ -31,12 +31,12 @@ function Signup(props) {
   };
 
   return (
-    <div className="container signupContainer my-1">
-      <Link to="/login">← Go to Login</Link>
+    <div className="test-card-signup">
+      <Link className="go-to-login" to="/login">← Go to Login</Link>
 
       <h2 className="signup-title">Signup</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row input-text signUp-label space-between my-2">
+        <div className=" input-text signUp-label space-between ">
           <label htmlFor="firstName">First Name:</label>
           <input
             placeholder="First Name"
@@ -46,7 +46,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row input-text signUp-label space-between my-2">
+        <div className=" input-text signUp-label space-between ">
           <label htmlFor="lastName">Last Name:</label>
           <input
             placeholder="Last Name"
@@ -56,7 +56,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row input-text signUp-label space-between my-2">
+        <div className=" input-text signUp-label space-between ">
           <label htmlFor="email">Email:</label>
           <input
             placeholder="youremail@test.com"
@@ -66,7 +66,7 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row input-text signUp-label space-between my-2">
+        <div className=" input-text signUp-label space-between ">
           <label htmlFor="pwd">Password:</label>
           <input
             placeholder="******"
@@ -76,8 +76,8 @@ function Signup(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row flex-end signUp-label">
-          <button type="submit">Submit</button>
+        <div className="flex-end signUp-label">
+          <button className="" type="submit">Submit</button>
         </div>
       </form>
     </div>

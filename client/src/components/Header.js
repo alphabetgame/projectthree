@@ -7,7 +7,7 @@ function Header() {
     <div className="container">
       {/* <img src={eggLogo} alt="Yellow cartoon egg logo." className="col-3"></img> */}
       <div>
-        <h1 className=" col-6 logo">LETTER SCRAMBLE </h1>
+        
         <p className="tag-line">Unscramble the letters to win!</p>
       </div>
       <img

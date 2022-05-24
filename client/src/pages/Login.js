@@ -40,8 +40,8 @@ function Login(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+    <div className="test-card-signup">
+      <Link className="go-to-signup" to="/signup">← Go to Signup</Link>
       <h2 className="signup-title">Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row signUp-label space-between my-2">
