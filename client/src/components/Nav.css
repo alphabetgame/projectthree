@@ -50,10 +50,10 @@ a {
 }
 
 .h1-text {
-  color: black;
+  color: white;
   background-color: var(--turquoise);
   text-align: center;
   align-items: center;
   justify-content: center;
-  text-shadow: -2px 2px yellow;
+  text-shadow: -2px 2px var(--pink);
 }
