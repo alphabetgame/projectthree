@@ -22,3 +22,10 @@
   text-decoration: none;
   color: white;
 }
+
+.subhead {
+  font-size: 24px;
+  text-align: center;
+  color: var(--turquoise);
+  text-shadow: 2px 2px white;
+}
