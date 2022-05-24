@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../components/Home.css";
 //signup, login, description/directions of the game
+import { Link } from "react-router-dom";
+import './../components/Game.css'
 
 const Home = () => {
+
   return (
     <div className="container">
       <p className="about">Welcome to Letter Scramble! </p>
@@ -25,6 +28,7 @@ const Home = () => {
       </div>
     </div>
   );
+
 };
 
 export default Home;
