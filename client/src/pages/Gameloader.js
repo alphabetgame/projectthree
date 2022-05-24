@@ -179,7 +179,7 @@ function GameLoader() {
   };
 
   return (
-    <div className="t-cont">
+    <div className="t-cont t-cont-bg">
       
       {!gameOver ? null : hasWon ? (
         <div className="ban">

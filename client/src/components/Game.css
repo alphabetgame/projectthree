@@ -146,6 +146,12 @@ button span:hover:after {
   padding-top: 20%;
 }
 
+@media (min-width:900px) {
+  .t-cont-bg {
+  padding-top: 10%;
+  }
+}
+
 .game-cont {
   display: flex;
   flex-direction: column;
