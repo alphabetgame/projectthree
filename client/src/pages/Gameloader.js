@@ -23,11 +23,11 @@ function GameLoader() {
   const isLoggedIn = Auth.loggedIn();
   // variables for link pages
   const playAgain = "/game/" + level;
-  
+
   const nxtLvl = parseInt(level) + 1;
-  
+
   const nextGame = "/game/" + nxtLvl;
-  
+
   // query game for the array of data based on difficulty
   const { loading, data } = useQuery(QUERY_GAMES);
   // gathers all words from the level of difficulty
@@ -43,7 +43,8 @@ function GameLoader() {
   const [start, setStart] = useState();
   const [now, setNow] = useState(start);
   const seconds = Math.floor((now - start) / 1000);
-  const secondsLeft = 10 - seconds;
+  const [timeAllowed, setTimeAllowed] = useState();
+  const secondsLeft = timeAllowed - seconds;
   // display states
   const [timerActive, setTimerActive] = useState(false);
   const [promptHidden, setPromptHidden] = useState(true);
@@ -65,7 +66,7 @@ function GameLoader() {
 
   // handleclick function for each time the user makes a guess
   const handleCardClick = (e, letter) => {
-    setIsWrong(false)
+    setIsWrong(false);
     //  as long as game over is not true, we check if the guess they made is correct or not
     if (gameOver != true) {
       // we compare the letter clicked to the letters state (which contains the solution) versus the alphabet position, which is essentially a marker of where in the word is correct
@@ -76,7 +77,7 @@ function GameLoader() {
         // we hide letters once they have been correctly guessed
         e.target.classList.add("hidden");
       } else {
-        setIsWrong(true)
+        setIsWrong(true);
       }
       // player wins if they reach the end of the solution state, alphabetPosition
       if (alphabetPosition === letters.length - 1) {
@@ -162,6 +163,11 @@ function GameLoader() {
   // start game function
   const playGameButton = async (event) => {
     event.preventDefault();
+    if (level < 1) {
+      setTimeAllowed(30);
+    } else if (level >= 1) {
+      setTimeAllowed(10);
+    }
     // use the handleword function to pick a single word from the array
     const pickedWord = handleWord(words);
     // set letters to pickedWord, which will be used for the prompt
@@ -180,7 +186,6 @@ function GameLoader() {
 
   return (
     <div className="t-cont">
-      
       {!gameOver ? null : hasWon ? (
         <div className="ban">
           <h4 className="lvl-lbl">
@@ -241,11 +246,11 @@ function GameLoader() {
           </div>
         </div>
       )}
-      <div className="game-cont"  id="winloss">
+      <div className="game-cont" id="winloss">
         {promptHidden ? null : (
           <div id="prompt" className="container events">
             {letters.map((letter) => (
-              <Letter animation={"letter-bounce"} letter={letter}  />
+              <Letter animation={"letter-bounce"} letter={letter} />
             ))}
           </div>
         )}
