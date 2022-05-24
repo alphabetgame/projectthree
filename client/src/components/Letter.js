@@ -4,7 +4,6 @@ import "./LetterAnimations.css";
 function Letter(props) {
   const [animation] = useState(props.animation);
   const { letter, handleCardClick } = props;
-  console.log(props.animation)
   
   return (
     <div
