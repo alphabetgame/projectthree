@@ -43,10 +43,8 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const [level, setLevel] = useState(1);
-  const handleLevelIncrease = (difficulty) => {
-    setLevel(difficulty);
-  };
+  
+  
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -59,14 +57,14 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route
               path="/game"
-              element={<Game handleLevelIncrease={handleLevelIncrease} />}
+              element={<Game />}
             />
             <Route path="/profile" element={<Profile />} />
             <Route path="/game/:level" element={<Gameloader />} />
             
           </Routes>
 
-          <Home></Home>
+      
         </div>
         <Footer></Footer>
       </Router>
