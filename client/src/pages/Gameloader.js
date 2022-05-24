@@ -44,6 +44,7 @@ function GameLoader() {
   // display states
   const [timerActive, setTimerActive] = useState(false);
   const [promptHidden, setPromptHidden] = useState(true);
+  const [shuffleHidden, setShuffleHidden] = useState(true);
   const [gameHidden, setGameHidden] = useState(true);
   // game over state
   const [gameOver, setGameOver] = useState(false);
@@ -182,11 +183,16 @@ function GameLoader() {
   const showPrompt = async () => {
     setPromptHidden(false);
     // 5 second delay for players to see the prompt word
-    await delay(5000);
+    await delay(4000);
     // hide word prompt
     setPromptHidden(true);
+
     // makes buttons clickable
+
     document.getElementById("prompt").classList.remove("events");
+    setShuffleHidden(false);
+    await delay(2000);
+    setShuffleHidden(true);
   };
 
   // start game function
@@ -272,9 +278,17 @@ function GameLoader() {
       )}
       <div id="winloss" className="game-cont" endGame={endgame()}>
         {promptHidden ? null : (
-          <div id="prompt" className="container events letter-bounce">
+          <div id="prompt" className="container events">
             {letters.map((letter) => (
-              <Letter letter={letter} id="stuff" />
+              <Letter animation={"letter-bounce"} letter={letter} id="stuff" />
+            ))}
+          </div>
+        )}
+        {/* display letters shuffling out animation */}
+        {shuffleHidden ? null : (
+          <div id="shuffle" className="container events">
+            {letters.map((letter) => (
+              <Letter animation={"letter-shuffle"} letter={letter} id="stuff" />
             ))}
           </div>
         )}
@@ -300,7 +314,11 @@ function GameLoader() {
           <>
             <div id="lets" className="container">
               {shuffleLetters.map((letter) => (
-                <Letter letter={letter} handleCardClick={handleCardClick} />
+                <Letter
+                  animation={"letter-spin-in"}
+                  letter={letter}
+                  handleCardClick={handleCardClick}
+                />
               ))}
             </div>
             <Timer />
