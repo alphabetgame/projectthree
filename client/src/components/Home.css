@@ -10,3 +10,8 @@
   background-color: var(--turquoise);
   color: white;
 }
+
+.game-l {
+  text-decoration: none;
+  color: white;
+}
