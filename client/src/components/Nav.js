@@ -12,12 +12,18 @@ function Navigation() {
     const isLoggedIn = Auth.loggedIn();
     return (
       <Navbar className="navbar" expand="lg" sticky="top">
+        <h1 className="h1-text">LETTER SCRAMBLE</h1>
         <Container>
+        
+        
           <Navbar.Brand>
-            <Link to="/">
-              <img id="logo" src={logo} alt="Happy Egg Sunny Side up" />
-            </Link>
-            {/* <Link to="/">Letter Scramble</Link> */}
+            
+              <Link to="/">
+                <img id="logo" src={logo} alt="Happy Egg Sunny Side up" />
+              </Link>
+              {/* <Link to="/">Letter Scramble</Link> */}
+                
+            
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

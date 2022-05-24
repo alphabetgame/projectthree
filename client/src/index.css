@@ -56,9 +56,9 @@ input {
 }
 
 .input-text {
-  color: #717574;
-  font-weight: bold;
-  text-shadow: 2px 2px white;
+  color: #ffffff;
+  text-shadow: 3px 3px #df2ba3;
+  letter-spacing: 2px;
 }
 
 .signUp {
@@ -70,16 +70,16 @@ input {
 }
 
 .signUp-label {
-  text-align: right;
-  align-items: flex-end;
+  display: grid;
 }
 
 .signup-title {
   text-align: center;
-  color: white;
-  text-shadow: 2px 2px #c14868;
+  color: #ffffff;
+  text-shadow: 3px 3px #df2ba3;
   font-size: 36px;
   font-weight: bold;
+  letter-spacing: 4px;
 }
 
 .logo {
@@ -109,4 +109,25 @@ input {
   .extra-icon {
     display: none;
   }
+}
+
+.test-card-signup {
+  margin: 2rem auto;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 425px;
+	background: rgb(72,188,205);
+  background: linear-gradient(180deg, rgba(72,188,205,1) 0%, rgba(193,72,104,1) 51%, rgba(224,179,66,1) 90%);
+	border-radius: 10px;
+	padding: .75rem;
+  box-shadow: 7px 7px rgba(128, 128, 128, 0.514);
+}
+
+.go-to-login {
+  color: black;
+}
+
+.go-to-signup {
+  color: black;
 }

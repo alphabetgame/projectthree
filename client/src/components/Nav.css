@@ -14,6 +14,7 @@
   /* flex-direction: column-reverse; */
   /* display: flex; */
   font-size: 36px;
+  display: flow-root;
 }
 
 .title {
@@ -46,4 +47,13 @@
 
 a {
   color: white;
+}
+
+.h1-text {
+  color: black;
+  background-color: var(--turquoise);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-shadow: -2px 2px yellow;
 }

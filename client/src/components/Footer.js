@@ -3,7 +3,7 @@ import "../components/Footer.css";
 
 function Footer() {
   return (
-    <div className="container-fluid @media">
+    <div className=" @media">
       <footer>Copyright © 2022</footer>
     </div>
   );
