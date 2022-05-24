@@ -110,77 +110,11 @@ button span:hover:after {
   color: var(--turquoise);
 }
 
-/* game animations */
 
-.dng-tim {
-  color: #e42424;
-}
-
-/* letter animations */
-/* wrong answer chosen shake */
-.letter {
-  animation: shake 0.4s ease-out;
-}
-
-@keyframes shake {
-  0% {
-    transform: skewX(-10deg);
-  }
-
-  25% {
-    transform: skewX(10deg);
-  }
-
-  50% {
-    transform: skewX(-10deg);
-  }
-
-  75% {
-    transform: skewX(10deg);
-  }
-
-  100% {
-    transform: skewX(-10deg);
-  }
-}
 
 /* end game animations */
 
-.win {
-  animation: win normal;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes win {
-  from {
-    background-color: #ffdf4f;
-    opacity: 100%;
-  }
-  to {
-    opacity: 50%;
-    background-color: #00e431;
-  }
-}
-
-.lose {
-  animation: lose normal;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes lose {
-  from {
-    background-color: #ffdf4f;
-    opacity: 100%;
-  }
-  100% {
-    opacity: 50%;
-    background-color: #e42424;
-  }
-}
-
-.banny {
+.ban {
   z-index: 1;
   position: absolute;
   border-top: #c14868 solid 0.08rem;
@@ -188,7 +122,6 @@ button span:hover:after {
   width: 100%;
   background-color: #ffdf4f;
   text-align: center;
-  margin-top: 4.5rem;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -210,10 +143,12 @@ button span:hover:after {
 
 .t-cont {
   position: relative;
+  padding-top: 20%;
 }
 
 .game-cont {
-  margin-top: 0rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .instructs {

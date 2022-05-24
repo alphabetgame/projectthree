@@ -23,9 +23,11 @@ function GameLoader() {
   const isLoggedIn = Auth.loggedIn();
   // variables for link pages
   const playAgain = "/game/" + level;
+  
   const nxtLvl = parseInt(level) + 1;
+  
   const nextGame = "/game/" + nxtLvl;
-
+  
   // query game for the array of data based on difficulty
   const { loading, data } = useQuery(QUERY_GAMES);
   // gathers all words from the level of difficulty
@@ -35,6 +37,7 @@ function GameLoader() {
   const [shuffleLetters, setShuffleLetters] = useState([]);
   const [alphabetPosition, setAlphabetPosition] = useState(0);
   const [hasWon, setHasWon] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   // new timer stuff
 
   const [start, setStart] = useState();
@@ -62,6 +65,7 @@ function GameLoader() {
 
   // handleclick function for each time the user makes a guess
   const handleCardClick = (e, letter) => {
+    setIsWrong(false)
     //  as long as game over is not true, we check if the guess they made is correct or not
     if (gameOver != true) {
       // we compare the letter clicked to the letters state (which contains the solution) versus the alphabet position, which is essentially a marker of where in the word is correct
@@ -72,7 +76,7 @@ function GameLoader() {
         // we hide letters once they have been correctly guessed
         e.target.classList.add("hidden");
       } else {
-        getElementById("stuff").classList.add("letter");
+        setIsWrong(true)
       }
       // player wins if they reach the end of the solution state, alphabetPosition
       if (alphabetPosition === letters.length - 1) {
@@ -99,46 +103,6 @@ function GameLoader() {
     //set to default state once game over
     //if statement that checks whether the user chose correctly or not
   };
-
-  // skeleton for shaking letter animation if choice is wrong
-  // const runShake = () => {
-  //   const [count, setCount] = React.useState(0)
-
-  //   // Use useRef for mutable variables that we want to persist
-  //   // without triggering a re-render on their change
-  //   const requestRef = React.useRef();
-  //   const previousTimeRef = React.useRef();
-
-  //   const animate = time => {
-  //     if (previousTimeRef.current != undefined) {
-  //       const deltaTime = time - previousTimeRef.current;
-
-  //       // Pass on a function to the setter of the state
-  //       // to make sure we always have the latest state
-  //       setCount(prevCount => (prevCount + deltaTime * 0.01) % 100);
-  //     }
-  //     previousTimeRef.current = time;
-  //     requestRef.current = requestAnimationFrame(animate);
-  //   }
-
-  //   React.useEffect(() => {
-  //     requestRef.current = requestAnimationFrame(animate);
-  //     return () => cancelAnimationFrame(requestRef.current);
-  //   }, []); // Make sure the effect runs only once
-
-  //   return <div>{Math.round(count)}</div>
-
-  // }
-
-  function endgame() {
-    useEffect(() => {
-      if (hasWon) {
-        document.getElementById("winloss").classList.add("win");
-      } else if (gameOver && !hasWon) {
-        document.getElementById("winloss").classList.add("lose");
-      }
-    });
-  }
   //   shuffle letters function
   const shuffled = (letters) =>
     letters
@@ -216,8 +180,9 @@ function GameLoader() {
 
   return (
     <div className="t-cont">
+      
       {!gameOver ? null : hasWon ? (
-        <div className="banny">
+        <div className="ban">
           <h4 className="lvl-lbl">
             You won! You correctly solved the word {letters.join("").toString()}{" "}
             with {secondsLeft} seconds left!
@@ -253,7 +218,7 @@ function GameLoader() {
           </div>
         </div>
       ) : (
-        <div className="banny">
+        <div className="ban">
           <h4 className="lvl-lbl">
             Game over! You ran out of time trying to spell the word{" "}
             {letters.join("").toString()}
@@ -276,11 +241,11 @@ function GameLoader() {
           </div>
         </div>
       )}
-      <div id="winloss" className="game-cont" endGame={endgame()}>
+      <div className="game-cont"  id="winloss">
         {promptHidden ? null : (
           <div id="prompt" className="container events">
             {letters.map((letter) => (
-              <Letter animation={"letter-bounce"} letter={letter} id="stuff" />
+              <Letter animation={"letter-bounce"} letter={letter}  />
             ))}
           </div>
         )}
@@ -288,7 +253,7 @@ function GameLoader() {
         {shuffleHidden ? null : (
           <div id="shuffle" className="container events">
             {letters.map((letter) => (
-              <Letter animation={"letter-shuffle"} letter={letter} id="stuff" />
+              <Letter animation={"letter-shuffle"} letter={letter} />
             ))}
           </div>
         )}
