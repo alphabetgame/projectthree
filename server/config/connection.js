@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/alphabetgame",
+  "mongodb+srv://atlas:admin@cluster0.pxpmj.mongodb.net/alphabetDB?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
